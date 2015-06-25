@@ -80,12 +80,6 @@
 		return this;
 	};
 
-	/*
-	 * SaveStylesheet
-	*/
-	PageState.prototype.SaveStylesheet = function() {
-
-	};
 	
 	/*
 	 * Save
@@ -103,10 +97,14 @@
 	*/
 	PageState.prototype.SaveLayout = function(n, suc, er) {
 		var tree = this.App.GetChainTree();
+
+		//Attach css
+		var css = this.App.GetProjectStyle("project-style");
+
 		var d = {
 			cmd: "saveLayout",
 			tree: this.App.ClearFromPrivate(tree),
-			css: null,
+			css: css,
 			head: "<head></head>",
 			meta: null,
 			name: n || new Date().toJSON().slice(0,10) + " - " + (new Date().getTime() + 15*60*1000),

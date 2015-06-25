@@ -36,20 +36,24 @@ if(!$obj) {
 		</div>
 </div>
 
-<script type="text/javascript" src="assets/js/jush.js"></script>
+
 <script type="text/javascript" src="assets/js/jush-textarea.js"></script>
-
 <script>
-
 	$(function() {
-    	$( ".simplemodal-container" ).draggable();
+			
 		
-		jush.style('assets/css/jush.css');
+    	/*
+	     * Preload the project's CSS
+    	*/
+		$(".css-modal textarea#_source").text(TwigGen.GetProjectStyle("project-style"));
+		
+
+		/*
+	     * JUSH initialization
+		*/
+		
 		jush.textarea(document.getElementById('_source'));
 
-    	
-		$("pre.jush").text(TwigGen.GetProjectStyle("project-style"));
-		
 
     	/***********************************************************
 	     * Real time style
@@ -62,6 +66,7 @@ if(!$obj) {
 	 	 * Style keyup event | css preview
 		*/
 		$("pre.jush").off().on("keyup", function(e) {
+			
 			var key = e.keyCode || e.which;
 			if(key === 186 || key === 187)
 				return;

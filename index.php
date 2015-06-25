@@ -38,6 +38,7 @@
     <script type="text/javascript" src="assets/js/bootstrap.min.js"></script>
     <script type="text/javascript" src="assets/js/json2.js"></script>
     <script type="text/javascript" src="assets/js/cssjson.js"></script>
+    <script type="text/javascript" src="assets/js/jush.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js"></script>
     <script type="text/javascript" src="assets/js/jquery.ui.position.js"></script>
     <script type="text/javascript" src="assets/js/jquery.contextMenu.js"></script>
@@ -54,6 +55,8 @@
                 hide: { effect: "none", duration: 1 },
                 show: { effect: "none", duration: 1 }
             });
+
+            jush.style('assets/css/jush.css');
         });
     </script>
 </body>

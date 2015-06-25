@@ -180,12 +180,15 @@ class App {
 					//Get HTML
 					$head = $this->getVar("head");
 					$meta = $this->getVar("meta");
+					$css  = $this->getVar("css");
 					$html = $tree; 
 					//TODO
 					$data = array(
 						"meta" => $meta,
-						"css" => 1
+						"css" => $css
 					);
+					
+					$this->saveCss($where, $name, $data["css"]);
 
 					$out = $this->composeHead($name, $data)."<body>".htmLawed($html, array('tidy'=>50))."</body>";
 
@@ -266,6 +269,16 @@ class App {
 			'<link sys rel="stylesheet" href="assets/css/bootstrap.min.css">',
 			'<script sys type="text/javascript" src="assets/js/bootstrap.min.js"></script>'
 		);
+	}
+
+	/*
+	 * SaveCss
+	*/
+	private function saveCss($path, $prname, $css) {
+		//Assets - js - css dir
+		$cssfile = $path.$prname."/assets/css/".$prname.".css";
+		file_put_contents($cssfile, $css);
+		chmod($cssfile, 0777);
 	}
 
 
