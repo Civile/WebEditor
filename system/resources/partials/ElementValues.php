@@ -126,9 +126,11 @@ function echovar($n) {
 		</tr>');
 	}
 
-
+	/*
+	 * Select resource
+	*/
 	$(".values-modal input[name='src']").on("click", function() {
-		TwigGen.OpenPageModal(TwigGen.Conf.Paths.Partials + "Explorer.php", null);
+		
 	});
 	/*
 		this.App.Cache.SetData("ExplorerCallback", function(file) {
