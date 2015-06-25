@@ -5,12 +5,6 @@
 */
 
 
-/*
- * importante correggere BUG Su riga 1973
- * trovare soluzione
-*/
-
-
 (function($, w) {
 
 	/*
@@ -1006,8 +1000,44 @@
 		 });
 	};
 
+	/*
+	 * Apply style from JSON
+	*/
+	App.prototype.AppendStyleFromJSON = function(json, name) {
 
+		var sel = "style[_style-name='"+ name +"']";
+
+		if($("head").find(sel)) 
+			$("head").find(sel).remove();
+		
+		var css = "\n" + CSSJSON.toCSS(json);
+		if(NULL(css) || css == "") 
+			return;
+
+		$("head").append('<style _style-name="'+ name +'"></style>')
+			.find(sel).text(css);
+
+		return this;
+	};
+
+	/*
+	 * GetProjectStyle
+	*/
+	App.prototype.GetProjectStyle = function(name) {
+		return $("head").find("style[_style-name='"+ name +"']").text();
+	};
+
+	/*
+	 * GetProjectStyleAsJSON
+	*/
+	App.prototype.GetProjectStyleAsJSON = function(name) {
+		var css = $("head").find("style[_style-name='"+ name +"']").text();
+		if(css) {
+			return CSSJSON.toJSON(css);
+		} else return null;
+	};
 	
+
 	/* ===============================
 	 * Protocols manager
 	*/
@@ -2125,7 +2155,7 @@
 	 * A loaded document can't have the attribute ALIAS
 	*/
 	ContextState.prototype.GetItem = function(t) {
-		
+
 		var index = this.App.GetAlias(t); //loaded document
 		if(!index) {
 			index = this.App.GetTag(t);

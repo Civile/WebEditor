@@ -47,26 +47,9 @@ if(!$obj) {
 		jush.style('assets/css/jush.css');
 		jush.textarea(document.getElementById('_source'));
 
-    	var x = TwigGen.GetElementsByAttributeValue("_chain-id",'<?php print echovar("chainid") ?>')[0];
-    	var _tmp = "";
-
-    	for(var i in x.style) {  
-
-    		var val = x.style[i];
-
-    		if(val == "" || typeof val === "function" 
-    			|| NULL(val) 
-    			|| !isNaN(i) 
-    			|| i === "parentRule" || i === "cssText" || i === "length") 
-    			continue; 
-    		
-
-    		_tmp += i + ":" + val + ";\n";
-    	}
-    	$("pre.jush").text(_tmp);
-
-
-
+    	
+		$("pre.jush").text(TwigGen.GetProjectStyle("project-style"));
+		
 
     	/***********************************************************
 	     * Real time style
@@ -76,7 +59,7 @@ if(!$obj) {
     	};
 
     	/*
-	 	 * Style keyup event
+	 	 * Style keyup event | css preview
 		*/
 		$("pre.jush").off().on("keyup", function(e) {
 			var key = e.keyCode || e.which;
@@ -84,7 +67,6 @@ if(!$obj) {
 				return;
 
 			var json = CSSJSON.toJSON($(this).text());
-
 			for(var i in json.attributes) {
 				var att = json.attributes[i];
 				$("[_chain-id='<?php print echovar("chainid") ?>']").css(i, att);
@@ -110,7 +92,8 @@ if(!$obj) {
 	     * Save style
 		*/
 		$(".css-modal .add-style").on("click", function() {
-			TwigGen.CloseModal();
+			TwigGen.AppendStyleFromJSON(temp.style, "project-style")
+				.CloseModal();
 		});
 
   	});
