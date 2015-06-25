@@ -5,6 +5,15 @@
 */
 
 
+/*
+ * Bug da correggere subito
+ * Dopo aver creato un protocollo questo non viene utilizzato dal MainState
+ *
+ * LO stile di default deve apparire nel modali di modifica stile
+*/
+
+
+
 (function($, w) {
 
 	/*
@@ -1611,13 +1620,24 @@
 		//Default Style
 		var defstyle = null;
 		if(this.CurrentItem()) {
-			if(!NULL(this.CurrentItem()["default_style"]) && this.CurrentItem()["default_style"] != "") {
+			if(!NULL(this.CurrentItem().default_style) && this.CurrentItem().default_style != "") {
 				this.App.ApplyStyleJSON(".__last", this.CurrentItem()["default_style"].attributes);
+			}
+			if(!NULL(this.CurrentItem().protocol) && this.CurrentItem().protocol != "") {
+				this.LastCaption().html($(this.CurrentItem().protocol).text());
 			}
 		}
 		this.SetUniqueID(".__last", this.App.GetNextID());
 
 		return this;
+	};
+
+	/*
+	 * LastCaption
+	 * returns last added element
+	*/
+	MainState.prototype.LastCaption = function() {
+		return $(".__last");
 	};
 
 	/*

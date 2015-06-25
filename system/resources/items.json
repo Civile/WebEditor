@@ -70,19 +70,6 @@
 			},
 			"protocol": "<footer></footer>"
 		},
-		"contenitore": {
-			"alias": "contenitore",
-			"tag": "div",
-			"visible": true,
-			"icon": "square",
-			"default_style": {
-				"children": {
-				},
-				"attributes": {
-				}
-			},
-			"protocol": "<div>*</div>"
-		},
 		"colonna tabella": {
 			"alias": "colonna tabella",
 			"tag": "td",
@@ -165,32 +152,6 @@
 				}
 			},
 			"protocol": "<pre></pre>"
-		},
-		"row": {
-			"alias": "row",
-			"tag": "div",
-			"icon": "minus-square-o",
-			"visible": true,
-			"default_style": {
-				"children": {
-				},
-				"attributes": {
-				}
-			},
-			"protocol": "<div class=\"row\"></div>"
-		},
-		"container": {
-			"alias": "container",
-			"tag": "div",
-			"icon": "square-o",
-			"visible": true,
-			"default_style": {
-				"children": {
-				},
-				"attributes": {
-				}
-			},
-			"protocol": "<div class=\"container\"></div>"
 		},
 		"col-md-12": {
 			"alias": "col-md-12",
@@ -338,6 +299,60 @@
 			"protocol": "<div class=\"col-md-9\"></div>",
 			"visible": true
 		},
+		"col-md-8": {
+			"alias": "col-md-8",
+			"tag": "div",
+			"icon": "columns",
+			"default_style": {
+				"children": {
+				},
+				"attributes": {
+				}
+			},
+			"protocol": "<div class=\"col-md-8\"></div>",
+			"visible": true
+		},
+		"colonna": {
+			"alias": "colonna",
+			"tag": "div",
+			"icon": "file",
+			"default_style": {
+				"children": {
+				},
+				"attributes": {
+				}
+			},
+			"protocol": "<div colore=\"$colore\" ></div>",
+			"visible": true
+		},
+		"container": {
+			"alias": "container",
+			"visible": true,
+			"tag": "div",
+			"icon": "square-o",
+			"default_style": {
+				"children": {
+				},
+				"attributes": {
+					"overflow": "hidden"
+				}
+			},
+			"protocol": "<div class=\"container\"></div>"
+		},
+		"row": {
+			"alias": "row",
+			"visible": true,
+			"tag": "div",
+			"icon": "minus-square-o",
+			"default_style": {
+				"children": {
+				},
+				"attributes": {
+					"overflow": "hidden"
+				}
+			},
+			"protocol": "<div class=\"row\"></div>"
+		},
 		"h1": {
 			"alias": "h1",
 			"visible": true,
@@ -349,7 +364,21 @@
 				"attributes": {
 				}
 			},
-			"protocol": "<h1></h1>"
+			"protocol": "<h1>H1</h1>"
+		},
+		"contenitore": {
+			"alias": "contenitore",
+			"visible": true,
+			"tag": "div",
+			"icon": "square",
+			"default_style": {
+				"children": {
+				},
+				"attributes": {
+					"overflow": "hidden"
+				}
+			},
+			"protocol": "<div></div>"
 		}
 	}
 }
