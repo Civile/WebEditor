@@ -17,8 +17,8 @@ if(!$obj) {
 
 <div id="modal-cont" class="css-modal">
 	<div class="header">
-		<div><h3>STILE DELL'ELEMENTO: <?php print $obj->alias ?>, tag: <?php print $obj->tag ?>, chain-id: <?php print echovar("chainid") ?></h3></div>
-		<div><span class="info-text">Modifica direttamente l'html di questo elemento</span></div>
+		<div><h3>STILE: <?php print $obj->alias ?>, tag: <?php print $obj->tag ?>, chain-id: <?php print echovar("chainid") ?></h3></div>
+		<div><span class="info-text">Gestisci lo stile di questo progetto</span></div>
 	</div>
 	<div class="body">
 		<div>
@@ -55,49 +55,13 @@ if(!$obj) {
 		jush.textarea(document.getElementById('_source'));
 
 
-    	/***********************************************************
-	     * Real time style
-    	*/
-    	var temp = {
-    		style: null
-    	};
-
-    	/*
-	 	 * Style keyup event | css preview
-		*/
-		$("pre.jush").off().on("keyup", function(e) {
-			
-			var key = e.keyCode || e.which;
-			if(key === 186 || key === 187)
-				return;
-
-			var json = CSSJSON.toJSON($(this).text());
-			for(var i in json.attributes) {
-				var att = json.attributes[i];
-				$("[_chain-id='<?php print echovar("chainid") ?>']").css(i, att);
-			}
-
-			temp.style = json;
-		});
-
-
-		/*
-	     * Close modal
-		*/
-		$(".css-modal .close-modal").on("click", function() {
-			//Remove style
-			if(!temp.style) return;
-			for(var i in temp.style.attributes) {
-				$("[_chain-id='<?php print echovar("chainid") ?>']").css(i, '');
-			}
-		});
-
 
 		/*
 	     * Save style
 		*/
 		$(".css-modal .add-style").on("click", function() {
-			TwigGen.AppendStyleFromJSON(temp.style, "project-style")
+			//Bugged : toJSON: if the css isn't right (example .page {  missing closing bracket ) everything crash
+			TwigGen.AppendStyleFromJSON( CSSJSON.toJSON($("pre.jush").text() ) , "project-style")
 				.CloseModal();
 		});
 

@@ -26,6 +26,10 @@
 
 
 <script>
+
+    /*
+     * Switch preview mode
+    */
     $("a._remove-captions").on("click", function() {
         if($("#_canvas ._caption-chained").length) {
             $("#_canvas *").each(function() {
