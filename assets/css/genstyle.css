@@ -84,6 +84,11 @@ span.text-er { color:red; background:white; }
   font-size:11px;
 }
 
+body .ui-tooltip {
+  border-width: 2px;
+  z-index: 9999999;
+}
+
 
 /* 
  * Caption
