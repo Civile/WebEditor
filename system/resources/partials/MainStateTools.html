@@ -1,0 +1,148 @@
+<div class="portion drawer-tools">
+	<div class="abs elements-list"></div>
+	<div class="input-group">
+		<div class="suggestions"></div>
+    	<label class="main-label">Drawer</label>
+    	<input type="text" name="element-selector" value="" placeholder="element"/>
+    </div>
+    <div class="input-group">
+	    <input type="checkbox" name="pause-drawer" style=""/>
+    </div>
+</div>
+<script>
+
+(function($) {
+
+	/*
+	 * Init
+	*/
+	$(".suggestions").css("display", "none");
+	$("body").on("click", "a[href='nowere']", function(e) {
+		e.preventDefault();
+	});
+
+	var it = TwigGen.AllItems("visible");
+	$(".drawer-tools .elements-list").html("");
+	for(var i in it) {
+		var ic = it[i].icon || "file";
+		$(".drawer-tools .elements-list").append('<a class="el-sel-wrapper"><i alias="'+it[i].alias+'" class="fa fa-'+ic+' element-icon" title="'+it[i].alias.replace("_", " ")+'"></i></a>');
+	}
+
+	/*
+	 * IconsClick event
+	*/ 
+	var __clicks = 0, __delay = 150, __timer = null;
+	$(".drawer-tools").off(".select-element").on("click.select-element", ".el-sel-wrapper", function(e) {
+		e.stopPropagation(); e.preventDefault();
+		var el = this;
+		__clicks++;
+	    __timer = setTimeout(function() {
+	        switch(__clicks){
+	            case 1:
+	              TwigGen.GetState("Main").UseItem( TwigGen.GetItemByAlias($(el).find("i").attr("alias")) )
+						.UpdateGraphicInterface();
+					$(".suggestions").css("display", "none");
+	            break;
+	            case 2:
+	               var i =  JSON.stringify(TwigGen.GetItemByAlias($(el).find("i").attr("alias")));
+					if(!i) return false;
+					TwigGen.OpenPageModal(TwigGen.Conf.Paths.Partials + "ModItem.php", null, {element: i});
+	            break;            
+	        }
+	        __clicks=0;
+	    }, __delay);
+	});
+
+
+	/*
+	 * UpdateGraphicInterface
+	*/
+	TwigGen.GetState("Main").GraphicInterfaceUpdate = function() {
+		//Refresh Selector
+		if($("input[name='element-selector']").length) {
+			var ci = TwigGen.GetState("Main").CurrentItem();
+			if(ci)
+				$("input[name='element-selector']").val(TwigGen.GetState("Main").CurrentItem().alias);
+		}
+
+		//Refresh lista icone
+		var it = TwigGen.AllItems('visible');
+		$(".drawer-tools .elements-list").html("");
+		for(var i in it) {
+			var ic = it[i].icon || "file";
+			$(".drawer-tools .elements-list").append('<a class="el-sel-wrapper"><i alias="'+it[i].alias+'" class="fa fa-'+ic+' element-icon" title="'+it[i].alias.replace("_", " ")+'"></i></a>');
+		}
+	};
+
+
+	/*
+	 * TwigGen MainState callbacks
+	*/
+	TwigGen.GetState("Main").AddCallback("OnCaptionStart", function() {
+		$(".drawer-tools input[name='element-selector']").prop("disabled", true);
+		 $(".suggestions").css("display", "none");
+	}).AddCallback("OnCaptionFinish", function() {
+		$(".drawer-tools input[name='element-selector']").prop("disabled", false);
+	});
+
+
+	/*
+	 * ContextMenu
+	*/
+	$("input[name='pause-drawer']").on("change", function() {
+		if($(this).is(':checked')) {
+			TwigGen.PauseState("Main");
+			$(".drawer-tools").addClass("portion-disabled");
+		} else {
+			TwigGen.ResumeState("Main");
+			$(".drawer-tools").removeClass("portion-disabled");
+		}
+		return true;
+	});
+
+
+	/*
+ 	 * ElementSelector
+	*/
+	$(".drawer-tools input[name='element-selector']").on("keyup", function(e) {
+		e = $.event.fix(e);
+		var key = e.which || e.keyCode;
+
+		if(key === 13) { //Selecting...
+			var item = TwigGen.GetItemByAlias($(this).val());
+			if(!item) {
+				TwigGen.OpenPageModal(TwigGen.Conf.Paths.Partials + "AddItem.php", null, {element: $(this).val()});
+			} else {
+				TwigGen.GetState("Main").UseItem( TwigGen.GetItemByAlias($(this).val()) );
+				$(".suggestions").css("display", "none");
+				return;
+			}
+		} else { //Writing...
+			$(".suggestions").html("");
+			var _in = $(this).val();
+			$(".suggestions").css("display", "block");
+			var _list = TwigGen.ItemsByAliasOrNameSimilarity(_in.trim().toLowerCase(), 3);
+			if(_in.length < 1 || !_list.length) 
+				return $(".suggestions").css("display", "none");
+
+			for(var i in _list) {
+				$(".suggestions").append('<a href="nowere" data-tag="'+ _list[i].tag  +'" data-alias="'+ _list[i].alias +'" class="suggestion-alias">'+ _list[i].alias +'</a>');
+			}
+		}
+	});
+
+
+	/*
+	 * SuggestionAlias
+	*/
+	$("body").on("click", ".suggestion-alias", function(e) {
+		$(".drawer-tools input[name='element-selector']").val($(this).data("alias"));
+		$(".suggestions").css("display", "none");
+		TwigGen.GetState("Main").UseItem( TwigGen.GetItemByAlias($(this).data("alias")) );
+	});
+
+})(jQuery);
+
+	
+
+</script>

@@ -1,0 +1,8 @@
+FIXES:
+
+contextmenu bug
+se tasto destro su genitore e poi tasto destro su figlio, il genitore resta selezionato (vd riga 212 di jquery.contextMenu)
+
+CSS: 
+modale: visualizza tutti i parenti con relative classi e id, una scaletta. Scrivi css per questo elemento: il css viene memorizzato in uno style posto dinamicamente nell'head
+Aggiungere salvataggio automatico?

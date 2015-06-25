@@ -1,0 +1,11 @@
+{
+
+	"_comment": "Items protocols",
+
+	"Protocols" : {
+		"twigblock" : "{% block $blockname %}*{% endblock %}",
+		"twigfor"   : "{% for $item in $collection %}*{% endfor %}",
+		"twigif1"	: "{% if $var $logicoperator $to %}"
+	}
+
+}

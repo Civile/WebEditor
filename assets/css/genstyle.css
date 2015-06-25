@@ -1,0 +1,613 @@
+/*
+ * Internal style
+*/
+
+@import url(http://fonts.googleapis.com/css?family=Quicksand);
+
+body, html {
+	-webkit-user-select: none;  /* Chrome all / Safari all */
+  -moz-user-select: none;     /* Firefox all */
+  -ms-user-select: none;      /* IE 10+ */
+  /* No support for these yet, use at own risk */
+  -o-user-select: none;
+  user-select: none;   
+  font-family: 'Quicksand', sans-serif;
+  padding:10px;
+}
+
+html { padding-bottom:90px !important;}
+
+/* 
+ * Generic
+*/
+._edt {};
+
+.ui-tooltip { z-index:999999 !important; }
+
+.abs {
+	position:absolute !important;
+}
+
+.f-left { float:left; }
+.f-right { float:right; }
+
+.__tempinvisible { display:none;}
+
+label.blue-label {
+  display: block;
+  background-color: rgb(94, 174, 236);
+  color: white;
+  font-weight: bold;
+  padding-left: 9px;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  font-size: 16px;
+  line-height: 20px;
+}
+
+.context-menu-active {
+  opacity:0.5;
+}
+
+input.input-maxwidth {
+  width:100%;
+}
+
+.left { float:left; }
+
+.clear { clear:both;}
+
+input.error {
+  background:rgb(255, 125, 125);
+  border:1px solid red;
+}
+
+.portion-disabled {
+    background-color: #C5C5C5;
+  opacity: 0.4;
+}
+
+span.text-er { color:red; background:white; }
+
+#modal {
+	display:none;
+	overflow:hidden;
+  text-align:left !important;
+}
+
+
+#_comic {
+  background:#333;
+  color:white;
+  padding:3px;
+  display:none;
+  font-size:11px;
+}
+
+
+/* 
+ * Caption
+*/
+._caption-temp {
+	border:1px dotted black;	
+	background:rgba(0, 0, 0, 0.25);
+  position:absolute !important;
+}
+
+._caption-chained {
+	overflow:hidden;
+	outline:1px dotted black !important;
+}
+
+._caption-chained:hover {
+  outline:2px dotted red !important;
+  background: rgba(255, 169, 61, 0.17) !important;
+}
+
+._caption-chained:hover {
+  border-color: black;
+}
+
+._caption-chained:hover {
+}
+
+._caption-target {
+	background-color:rgba(227, 101, 140, 0.26) !important;
+}
+
+
+/*
+ * Modal
+*/
+
+._modal { background:white; font-family: 'Quicksand', sans-serif !important; }
+
+._modal h3 {
+    display: block;
+    border-bottom: 0px;
+  font-size: 1.17em;
+  -webkit-margin-before: 1em;
+  -webkit-margin-after: 1em;
+  -webkit-margin-start: 0px;
+  -webkit-margin-end: 0px;
+  font-weight: bold;
+    font-family: 'Quicksand', sans-serif;
+    color:white;
+      margin: 0;
+  font-size: 20px;
+  line-height: 28px;
+  text-transform: uppercase;
+}
+
+#simplemodal-container { height:auto !important; top:10px !important; }
+
+#modal-cont {
+	width:800px;
+}
+
+#modal-cont span.info-text {
+	font-size:12px;
+}
+
+#modal-cont xmp {
+	font-size:11px;
+	display:inline-block;
+	margin:0;
+}
+
+#modal-cont .body {
+	min-height:300px;
+}
+
+#modal-cont .header {
+	height: 45px;
+	padding:15px;
+	background-color: #005C91;
+  	color: white;
+}
+
+#modal-cont .header h3 { margin:0;}
+
+#modal-cont .body .data-input-cont {
+    height: 269px;
+  border:1px solid #ddd;
+  width:300px;
+}
+
+#modal-cont .body .data-input-cont .data-input-group label {
+  display: inline-block;
+  float:left;
+  width: 100px;
+  background-color: transparent;
+  color: black;
+  font-size: 16px;
+  font-weight: normal;
+}
+
+form#add-item .data-input-cont {
+   background-color: #EEE;
+}
+
+#modal-cont .body .data-input-cont .data-input-group .right-inputs {
+  float:left;
+  width:180px;
+    margin-left: 1px;
+}
+
+#modal-cont .body .data-input-cont .data-input-group input[type='text'] {
+  padding: 3px;
+  width: 168px;
+  font-size: 15px;
+  margin-bottom:5px;
+}
+
+#modal-cont .body .input-area textarea {
+	/*min-height:380px;*/
+	width:300px;
+	resize:none;
+}
+
+#modal-cont .body .input-area textarea.text-default-style {
+  width: 172px;
+  display: inline-block;
+  height: 100px;
+}
+
+#modal-cont *{
+  -webkit-box-sizing: initial !important;
+  -moz-box-sizing: initial !important;
+  box-sizing: initial !important;
+}
+
+#modal-cont .body .input-area textarea.protocol {
+    font-family: arial;
+  width: 493px;
+  height: 260px;
+  border: 0px;
+}
+
+#modal-cont .body .input-area label { 
+	display: block;
+  background-color: rgb(94, 174, 236);
+  color: white;
+  font-weight: bold;
+  padding-left: 9px;
+  padding-top: 5px;
+  padding-bottom: 5px;
+    font-size: 15px;
+  line-height: 100%;
+  height: 16px;
+}
+
+
+#modal-cont .footer {
+	height: 60px;
+	background-color: #6E8891;
+  	color: white;
+}
+
+#modal-cont .footer .buttons { float:right; }
+#modal-cont .footer .buttons a {
+	  color: white;
+      line-height: 19px;
+      font-size: 18px;
+      text-transform:uppercase;
+  text-decoration: none;
+  background-color: rgb(49, 125, 219);
+  padding: 20px;
+  /* height: 32px; */
+    display: inline-block;
+  font-weight: bold;
+   font-family: 'Quicksand', sans-serif;
+}
+
+#modal-cont .footer .buttons a:hover { background:rgb(45, 113, 197); }
+
+
+.drawer-tools:hover .elements-list, footer._sys-footer .title-label:hover footer._sys-footer .elements-list {
+  display:block;
+}
+.drawer-tools .elements-list {
+    background: rgb(217, 244, 247);
+  position:absolute;
+  padding: 3px;
+  padding-top: 8px;
+  width: 100%;
+  top: -43px;
+  left: 0;
+  min-height: 30px;
+  border: 1px solid grey;
+  
+  margin: 0px !important;
+  text-align: left !important;
+}
+.drawer-tools .elements-list .element-icon {
+  margin-right:5px;
+  color: rgb(38, 132, 203);
+  font-size:25px;
+}
+.drawer-tools .elements-list .element-icon:hover {
+  color:black;
+  cursor:pointer;
+}
+
+/*ctx tools*/
+.context-tools ._ops-info {
+    float: left;
+  width: 250px;
+  background: #1885BD;
+  height: 12px;
+  padding: 13px;
+  font-family: arial;
+  color: white;
+  font-size: 11px;
+}
+
+.values-modal table a.add-attribute {
+     padding: 8px;
+    background-color: rgb(30, 28, 103);
+  text-decoration: none;
+  color: white;
+  font-weight: bold;
+  width: 155px;
+  display: block;
+  text-align: center;
+font-size: 15px;
+  text-transform: uppercase;
+    line-height: 18px;
+}
+
+.values-modal table#atts a._remove-att {
+  background: rgb(31, 114, 141);
+  color: white;
+  padding: 5px;
+  font-size: 16px;
+  display: block;
+  width: 22px;
+}
+.values-modal table th {
+  font-size: 16px;
+  text-align: center;
+  font-weight: bold;
+}
+
+
+/*
+ * ZOOM MODAL
+*/
+._zoom-modal {
+  width:1000px !important;
+  height:500px;
+}
+
+._zoom-modal ._menu-tabs {
+  height:40px;
+  background: rgb(46, 65, 106);
+}
+
+._zoom-modal ._menu-tabs ._button-tab {
+  float:left;
+}
+
+._zoom-modal ._menu-tabs ._button-tab a {
+  text-decoration:none;
+  color:#333;
+  display:block;
+  background:#eee;
+  border:1px solid white;
+    padding: 10px;
+  height: 20px;
+}
+
+._zoom-modal ._menu-tabs ._button-tab a._active {
+  background:#333;
+  color:#EEE;
+}
+
+._zoom-modal ._panorama {
+  height:300px;
+  overflow-y: auto;
+  margin-top:3px;
+}
+
+._zoom-modal ._panorama-content {
+  overflow-y: auto;
+  height:500px;
+  margin-top: 5px;
+}
+
+._zoom-modal a._zoom-out, ._zoom-modal a._zoom-in {
+  font-size:25px;
+  text-decoration:none;
+  color:white;
+} 
+
+/*
+ * CLASS MODAL
+*/
+.class-modal {
+  width:700px !important;
+}
+
+.class-modal .body { min-height:145px !important; }
+
+.class-modal input[type='text'] {
+  font-size:18px;
+  padding:3px;
+}
+
+
+/*
+ * VALUES MODAL
+*/
+.values-modal {
+
+}
+
+.values-modal table input[type='text'] {
+    font-size: 15px;
+    padding: 3px;
+    width:300px;
+}
+
+.values-modal table td {
+  text-align:center;
+    text-align: center;
+  font-size: 15px;
+  line-height: 24px;
+}
+
+
+
+/*
+ * ProjectsModal
+*/
+._projects-modal {}
+._projects-modal ._prs-container {
+    height: 420px;
+  overflow: auto;
+}
+._projects-modal ._prs-container ._prj-thumb {
+  height: 100px;
+  width: 100px;
+  float: left;
+  background-color: #7FC4E0;
+  color: white;
+  font-weight: bold;
+  padding: 10px;
+  text-align: center;
+  border: 2px solid rgb(95, 133, 148);
+  border-right:1px solid rgb(95, 133, 148);
+}
+
+._projects-modal ._prs-container ._prj-thumb:hover {
+  background-color: #333;
+}
+
+._projects-modal ._prs-container ._prj-thumb ._prj-title {
+     font-size: 16px;
+  line-height: 15px;
+  font-weight: bold;
+}
+
+/*
+  *PGE TOOLS
+*/
+._pge-tools ._tools {
+  background: rgb(96, 158, 236);
+  height: 22px;
+  padding: 8px;
+  width: 200px;
+  float: left;
+}
+
+._pge-tools ._tools ._option { float:left; margin-right:15px;}
+
+._pge-tools ._tools i {
+  color:white;
+  font-size:25px;
+}
+
+
+
+
+
+
+
+/*
+ * Footer
+*/
+footer._sys-footer {
+	position:fixed;
+  z-index:99999;
+	background:white;
+	border-top:2px solid grey;
+  text-transform:none !important;
+	bottom:0px;
+	height:40px;
+	width:100%;
+  font-family: 'Quicksand', sans-serif !important;
+  margin-left: -21px;
+}
+
+footer._sys-footer * {
+  -webkit-box-sizing: initial !important;
+  -moz-box-sizing: initial !important;
+  box-sizing: initial !important;
+}
+footer._sys-footer ._tools-temp {
+	display:none;
+}
+
+footer._sys-footer .portion {
+	float:left;
+	background-color: #C9E7FF;
+}
+
+footer._sys-footer .portion .input-group {
+	float:left;
+}
+
+footer._sys-footer .portion input[type='text'] {
+	font-family:arial;
+	font-size: 17px;
+  	  padding: 7px;
+      border:0px;
+}
+
+footer._sys-footer .suggestions {
+  position: absolute;
+  width: 210px;
+  min-height: 70px;
+  top: -71px;
+  left: 75px;
+  background-color: white;
+  border: 1px solid rgb(172, 172, 172);
+}
+
+footer._sys-footer .suggestions a.suggestion-alias {
+	  margin: 5px;
+  color: black;
+  text-decoration: none;
+  display:block;
+}
+
+footer._sys-footer .portion label.simple {
+	font-size:12px;
+}
+
+footer._sys-footer label.main-label {
+  background-color: rgb(107, 154, 189);
+  color: white;
+  display: block;
+  float: left;
+    height: 30px;
+  border-left: 1px solid #DDD;
+  padding-left: 13px;
+  padding-right: 5px;
+  vertical-align: center;
+    text-transform: none;
+    font-size: 15px;
+  padding-top: 9px;
+}
+
+footer._sys-footer label.title-label {
+  float: left;
+    font-size: 16px !important;
+  background-color: rgb(230, 88, 88);
+    height: 38px;
+  text-transform: none;
+  padding-top: 10px;
+  padding-left: 10px;
+  padding-right: 20px;
+  color: white;
+  font-weight: bold;
+}
+
+
+
+
+/*WYSI*/
+#_wysihtml5-toolbar a {
+  display: block;
+  float: left;
+  background-color: #eee;
+  padding: 7px;
+  color: rgb(76, 75, 75);
+  border: 1px solid #DDD;
+  font-size:12px;
+}
+#_wysihtml5-toolbar ._createLink {
+  padding: 0px;
+  border: 0;
+  float: right;
+  margin: 0;
+}
+
+#_wysihtml5-toolbar ._createLink input[type='text'] {
+    font-size: 13px;
+  padding: 2px;
+  height: 24px;
+  width: 200px;
+  padding: 0;
+  margin: 0;
+}
+
+
+
+
+
+/*media queries*/
+@media only screen
+and (max-width : 320px) {
+._sys-footer {
+    display:none;
+  }
+}
+
+@media only screen
+and (max-width : 780px) {
+._sys-footer {
+    display:none;
+  }
+}

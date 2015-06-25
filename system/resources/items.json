@@ -1,0 +1,264 @@
+{
+	"_comment": "Items protocols",
+	"Items": {
+		"canvas": {
+			"alias": "canvas",
+			"tag": "canvas",
+			"icon": "paint-brush",
+			"visible": true,
+			"default_style": {
+				"children": {
+				},
+				"attributes": {
+					"border": "1px solid orange"
+				}
+			},
+			"protocol": "<canvas width=\"$lunghezza\" height=\"$altezza\"></canvas>"
+		},
+		"form classico": {
+			"alias": "form classico",
+			"tag": "form",
+			"icon": "list",
+			"visible": true,
+			"default_style": {
+				"children": {
+				},
+				"attributes": {
+					"border": "1px solid red"
+				}
+			},
+			"protocol": "<form name=\"$nome\" action=\"$azione\" enctype=\"$enctype\"></form>"
+		},
+		"label": {
+			"alias": "label",
+			"tag": "label",
+			"icon": "",
+			"visible": true,
+			"default_style": {
+				"children": {
+				},
+				"attributes": {
+					"border": "1px dotted #333",
+					"display": "block"
+				}
+			},
+			"protocol": "<label>"
+		},
+		"select": {
+			"alias": "select",
+			"tag": "select",
+			"visible": true,
+			"icon": "navicon",
+			"default_style": {
+				"children": {
+				},
+				"attributes": {
+				}
+			},
+			"protocol": "<select name=\"$nome\"></select>"
+		},
+		"footer": {
+			"alias": "footer",
+			"tag": "footer",
+			"visible": true,
+			"icon": "minus",
+			"default_style": {
+				"children": {
+				},
+				"attributes": {
+				}
+			},
+			"protocol": "<footer></footer>"
+		},
+		"contenitore": {
+			"alias": "contenitore",
+			"tag": "div",
+			"visible": true,
+			"icon": "square",
+			"default_style": {
+				"children": {
+				},
+				"attributes": {
+				}
+			},
+			"protocol": "<div>*</div>"
+		},
+		"colonna tabella": {
+			"alias": "colonna tabella",
+			"tag": "td",
+			"visible": true,
+			"icon": "columns",
+			"default_style": {
+				"children": {
+				},
+				"attributes": {
+					"border": "1px dotted grey"
+				}
+			},
+			"protocol": "<td></td>"
+		},
+		"riga tabella": {
+			"alias": "riga tabella",
+			"tag": "tr",
+			"visible": true,
+			"icon": "th-large",
+			"default_style": {
+				"children": {
+				},
+				"attributes": {
+					"border": "1px dotted green",
+					"display": "block"
+				}
+			},
+			"protocol": "<tr></tr>"
+		},
+		"tbody": {
+			"alias": "tbody",
+			"tag": "tbody",
+			"visible": true,
+			"icon": "file",
+			"default_style": {
+				"children": {
+				},
+				"attributes": {
+					"display": "block"
+				}
+			},
+			"protocol": "<tbody></tbody>"
+		},
+		"tabella": {
+			"alias": "tabella",
+			"tag": "table",
+			"visible": true,
+			"icon": "table",
+			"default_style": {
+				"children": {
+				},
+				"attributes": {
+					"border": "1px dotted blue"
+				}
+			},
+			"protocol": "<table></table>"
+		},
+		"span": {
+			"alias": "span",
+			"tag": "span",
+			"visible": false,
+			"icon": "",
+			"default_style": {
+				"children": {
+				},
+				"attributes": {
+				}
+			},
+			"protocol": "<span></span>"
+		},
+		"pre": {
+			"alias": "pre",
+			"tag": "pre",
+			"visible": false,
+			"icon": "file",
+			"default_style": {
+				"children": {
+				},
+				"attributes": {
+				}
+			},
+			"protocol": "<pre></pre>"
+		},
+		"row": {
+			"alias": "row",
+			"tag": "div",
+			"icon": "minus-square-o",
+			"visible": true,
+			"default_style": {
+				"children": {
+				},
+				"attributes": {
+				}
+			},
+			"protocol": "<div class=\"row\"></div>"
+		},
+		"container": {
+			"alias": "container",
+			"tag": "div",
+			"icon": "square-o",
+			"visible": true,
+			"default_style": {
+				"children": {
+				},
+				"attributes": {
+				}
+			},
+			"protocol": "<div class=\"container\"></div>"
+		},
+		"col-md-12": {
+			"alias": "col-md-12",
+			"tag": "div",
+			"icon": "columns",
+			"visible": true,
+			"default_style": {
+				"children": {
+				},
+				"attributes": {
+				}
+			},
+			"protocol": "<div class=\"col-md-12\"></div>"
+		},
+		"col-md-6": {
+			"alias": "col-md-6",
+			"tag": "div",
+			"icon": "columns",
+			"default_style": {
+				"children": {
+				},
+				"attributes": {
+				}
+			},
+			"protocol": "<div class=\"col-md-6\"></div>",
+			"visible": true
+		},
+		"radio": {
+			"alias": "radio",
+			"visible": true,
+			"tag": "input",
+			"icon": "check-circle",
+			"default_style": {
+				"children": {
+				},
+				"attributes": {
+				}
+			},
+			"protocol": "<input type=\"radio\" name=\"$nome\" value=\"$valore\" />"
+		},
+		"immagine": {
+			"alias": "immagine",
+			"visible": true,
+			"tag": "img",
+			"icon": "photo",
+			"default_style": {
+				"children": {
+				},
+				"attributes": {
+					"background": "#EEE",
+					"background-size": "cover",
+					"border": "1px solid white"
+				}
+			},
+			"protocol": "<img src=\"$indirizzo risorsa\" class=\"img_responsive\" title=\"$titolo\" alt=\"$testo alternativo\"/>"
+		},
+		"textinput": {
+			"alias": "textinput",
+			"visible": true,
+			"tag": "input",
+			"icon": "font",
+			"default_style": {
+				"children": {
+				},
+				"attributes": {
+				}
+			},
+			"protocol": "<input type=\"text\" name=\"$nome\" value=\"$valore\" placeholder=\"$placeholder\" />"
+		}
+	}
+}

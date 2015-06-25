@@ -1,0 +1,16 @@
+{
+	"_comment": "Projects info",
+	"Projects": { 
+
+		"P1": {
+			"Name": "Civile home page",
+			"Url": "/projects/1.html",
+			"Style": "/projects/1.css"
+		},
+		"P2": {
+			"Name": "big",
+			"Url": "/projects/2.html",
+			"Style": "/projects/main.css"
+		}
+	}
+}
