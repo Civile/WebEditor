@@ -324,6 +324,32 @@
 			},
 			"protocol": "<div class=\"col-md-1\"></div>",
 			"visible": true
+		},
+		"col-md-9": {
+			"alias": "col-md-9",
+			"tag": "div",
+			"icon": "columns",
+			"default_style": {
+				"children": {
+				},
+				"attributes": {
+				}
+			},
+			"protocol": "<div class=\"col-md-9\"></div>",
+			"visible": true
+		},
+		"h1": {
+			"alias": "h1",
+			"visible": true,
+			"tag": "h1",
+			"icon": "header",
+			"default_style": {
+				"children": {
+				},
+				"attributes": {
+				}
+			},
+			"protocol": "<h1></h1>"
 		}
 	}
 }

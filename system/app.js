@@ -1633,6 +1633,8 @@
 	*/
 	MainState.prototype.ApplyProtocol = function(a, w) {
 		//Apply protocol
+		if(NULL(this.CurrentItem())) return;
+		
 		var pr = $(this.CurrentItem()["protocol"]);
 		if(!this.IsProtocol(pr)) return;
 		var at = $(this.CurrentItem()["protocol"])[0].attributes;
