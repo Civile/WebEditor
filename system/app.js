@@ -1319,7 +1319,7 @@
 		);
 
 		/*Double click - html editor*/
-		var __clicks = 0, __delay = 550, __timer = null;
+		var __clicks = 0, __delay = 150, __timer = null;
 		$(document).on("click", "._caption-chained", function() {
 			var el = this;
 			__clicks++;
