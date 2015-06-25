@@ -13,6 +13,7 @@
     <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="assets/css/jquery.contextMenu.css">
     <link rel="stylesheet" href="assets/css/bootstrap.min.css">
+    <link rel="stylesheet" href="assets/css/jush.css">
     <link rel="stylesheet" href="assets/css/filetree/jqueryFileTree.css">
     <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/themes/smoothness/jquery-ui.css">
     <!--[if lt IE 9]>
@@ -33,8 +34,6 @@
     <!-- <script src="system/jquery-1.10.min.js"></script>-->
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
     <script type="text/javascript" src="assets/js/filetree/jqueryFileTree.js"></script>
-
-
     <!-- APPLICATION -->
     <script type="text/javascript" src="assets/js/bootstrap.min.js"></script>
     <script type="text/javascript" src="assets/js/json2.js"></script>

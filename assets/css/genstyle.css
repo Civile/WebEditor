@@ -418,6 +418,20 @@ font-size: 15px;
 }
 
 
+/*
+ * STYLE MODAL
+*/
+.css-modal .__css-editor {
+  height: 365px;
+  width: 99%;
+  font-family:arial;
+}
+
+pre.jush {
+  width:790px !important;
+  height:379px !important;
+}
+
 
 /*
  * ProjectsModal

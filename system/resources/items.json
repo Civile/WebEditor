@@ -298,6 +298,32 @@
 			},
 			"protocol": "<div class=\"col-md-3\"></div>",
 			"visible": true
+		},
+		"col-md-2": {
+			"alias": "col-md-2",
+			"tag": "div",
+			"icon": "columns",
+			"default_style": {
+				"children": {
+				},
+				"attributes": {
+				}
+			},
+			"protocol": "<div class=\"col-md-2\"></div>",
+			"visible": true
+		},
+		"col-md-1": {
+			"alias": "col-md-1",
+			"tag": "div",
+			"icon": "columns",
+			"default_style": {
+				"children": {
+				},
+				"attributes": {
+				}
+			},
+			"protocol": "<div class=\"col-md-1\"></div>",
+			"visible": true
 		}
 	}
 }

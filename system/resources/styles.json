@@ -1,0 +1,13 @@
+{
+	"_comment": "Styles, css rules protocols",
+	"Rules": 
+	{
+			"1": {
+				"alias": "bordo",
+				"description": "flotta a sinistra",
+				"visible": true,
+				"protocol": "border:$spessore $tipo-bordo $colore;"
+			}
+	}
+
+}

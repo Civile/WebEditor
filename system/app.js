@@ -38,7 +38,9 @@
 			Protocols: null, 
 			Items:null,
 			Attributes:null, 
-			ID: 0};
+			ID: 0,
+			Styles: null
+		};
 
 		this._Errors = [];
 		this.__init();
@@ -79,6 +81,7 @@
 
 		this.Loader.AddResource(this.Conf.Paths.Resources + "protocols.json");
 		this.Loader.AddResource(this.Conf.Paths.Resources + "items.json");
+		this.Loader.AddResource(this.Conf.Paths.Resources + "styles.json");
 		this.Loader.AddResource(this.Conf.Paths.Resources + "attributes.json");
 		this.Loader.AddResource(this.Conf.Paths.Resources + "projects.json");
 
@@ -102,6 +105,7 @@
 		//GetCacheData
 		this._Sys.Protocols  = new Protocols(JSON.parse(this.Cache.GetJSON("protocols")));
 		this._Sys.Items      = new Items(JSON.parse(this.Cache.GetJSON("items")), this);
+		this._Sys.Styles     = new Items(JSON.parse(this.Cache.GetJSON("styles")), this);
 		//this._Sys._Attributes = this.Cache.GetJSON("attributes");
 
 		this._InitGenericEvents();
@@ -202,7 +206,9 @@
 				$(this).next(".input-info").html("Il carattere '_' non è consentito");
 				e.preventDefault();
 				return false;
-				} else { $(this).next(".input-info").html(""); }
+			} else { 
+				$(this).next(".input-info").html(""); 
+			}
 		}
 	};
 
@@ -586,6 +592,23 @@
 	App.prototype.GetItemByTag = function(t) {
 		return this._Sys.Items.GetItemByTag(t);
 	};
+
+	/*
+	 * GetElementsByAttributeValue
+	*/
+	App.prototype.GetElementsByAttributeValue = function(atrName,atrValue) {
+	    var matchElems = [];
+	    var allElems = document.getElementsByTagName('*');
+	    for(var x = 0, len = allElems.length; x < len; x++) {
+	        if(allElems[x].getAttribute(atrName) != atrValue) {
+	            continue;
+	        }
+
+	        matchElems.push(allElems[x]);
+	    }
+
+	    return matchElems;
+	}
 
 	/*
 	 * HasItemByAlias
@@ -1500,7 +1523,8 @@
 	 * CreateCaption
 	*/
 	MainState.prototype.CreateCaption = function() {
-		this.App.AppendElement(this.CurrentItem().tag, "#_canvas", "abs " + this.Conf.Caption.Class);
+		if(this.CurrentItem())
+			this.App.AppendElement(this.CurrentItem().tag, "#_canvas", "abs " + this.Conf.Caption.Class);
 		return this;
 	};
 
@@ -1863,7 +1887,7 @@
 	*/
 	ContextState.prototype._EventZoom = function(t) {
 		
-		var item = this.App.GetItemByAlias(this.App.GetAlias(t)); 
+		var item = this.GetItem(t);
 		if(!item)
 			return;
 
@@ -1881,7 +1905,7 @@
 	*/
 	ContextState.prototype._EventValues = function(t) {
 		
-		var item = this.App.GetItemByAlias(this.App.GetAlias(t)); 
+		var item = this.GetItem(t);
 		if(!item)
 			return;
 
@@ -1894,11 +1918,28 @@
 	};
 
 	/*
+	 * EventStyle
+	*/
+	ContextState.prototype._EventStyle = function(t) {
+
+		var item = this.GetItem(t);
+		if(!item)
+			return;
+
+		var p = {
+			chainid: $(t).attr("_chain-id"),
+			item: JSON.stringify(item)
+		};
+
+		this.App.OpenPageModal(TwigGen.Conf.Paths.Partials + "ElementStyle.php", null, p);
+	};
+
+	/*
 	 * EventHTML
 	*/
 	ContextState.prototype._EventHTML = function(t) {
 		
-		var item = this.App.GetItemByAlias(this.App.GetAlias(t)); 
+		var item = this.GetItem(t);
 		if(!item)
 			return;
 
@@ -1919,7 +1960,7 @@
 	*/
 	ContextState.prototype._EventClass = function(t) {
 		
-		var item = this.App.GetItemByAlias(this.App.GetAlias(t)); 
+		var item = this.GetItem(t);
 		if(!item) {
 			this.App.Cache.SetData("_EventClassItem", t);
 			this.App.Cache.SetData("_EventClass", function() {
@@ -2078,8 +2119,22 @@
 	};
 
 
-
-
+	/*
+	 * GetItem
+	 * Bugged
+	 * A loaded document can't have the attribute ALIAS
+	*/
+	ContextState.prototype.GetItem = function(t) {
+		
+		var index = this.App.GetAlias(t); //loaded document
+		if(!index) {
+			index = this.App.GetTag(t);
+			return this.App.GetItemByTag(index);
+		}
+		else {
+			return this.App.GetItemByAlias(index); 
+		}
+	};
 
 
 
