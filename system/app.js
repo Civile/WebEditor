@@ -565,6 +565,17 @@
 		return this._Sys.Items.GetItemByAlias(a);
 	};
 
+	/*
+	 * GetAlias
+	*/
+	App.prototype.GetAlias = function(e) {
+		return $(e).attr("_alias");
+	};
+
+	/*
+	 * AllItems
+	 * returns all items
+	*/
 	App.prototype.AllItems = function(v) {
 		return this._Sys.Items.All(v);
 	};
@@ -821,11 +832,12 @@
 			var ats = $(pr)[0].attributes;
 			for(var i in ats) {
 				var at = ats[i];
+
 				if(typeof at !== "function" && typeof at !== "undefined") { 
 					//Get usable attributes
 					var n = (typeof at.name !== "undefined" ? at.name : null);
 					var v = (typeof at.value !== "undefined"? at.value : null);
-					console.log(ats);
+
 					if(NULL(n) || NULL(v))
 						continue;
 
@@ -850,7 +862,6 @@
 	*/
 	App.prototype.GetPublicAttributes = function(t, alias) {
 		var _pat = this.GetProtocolAttributes(alias);
-		
 		var _cats = $(t)[0].attributes;
 		for(var i in _cats) {
 			var cat = _cats[i];
@@ -1514,6 +1525,7 @@
 				.removeClass(this.Conf.Caption.Class)
 				.addClass("_caption-chained")
 				.addClass("_potential")
+				.attr("_alias", this._Action.Item.alias)
 				.appendTo(this._Action.Target);
 
 				//Compute chain id
@@ -1851,7 +1863,7 @@
 	*/
 	ContextState.prototype._EventZoom = function(t) {
 		
-		var item = this.App.GetItemByTag(this.App.GetTagByHTMLObj(t));
+		var item = this.App.GetItemByAlias(this.App.GetAlias(t)); 
 		if(!item)
 			return;
 
@@ -1869,7 +1881,7 @@
 	*/
 	ContextState.prototype._EventValues = function(t) {
 		
-		var item = this.App.GetItemByTag(this.App.GetTagByHTMLObj(t));
+		var item = this.App.GetItemByAlias(this.App.GetAlias(t)); 
 		if(!item)
 			return;
 
@@ -1885,7 +1897,8 @@
 	 * EventHTML
 	*/
 	ContextState.prototype._EventHTML = function(t) {
-		var item = this.App.GetItemByTag(this.App.GetTagByHTMLObj(t));
+		
+		var item = this.App.GetItemByAlias(this.App.GetAlias(t)); 
 		if(!item)
 			return;
 
@@ -1905,7 +1918,8 @@
 	 * Class
 	*/
 	ContextState.prototype._EventClass = function(t) {
-		var item = this.App.GetItemByTag(this.App.GetTagByHTMLObj(t));
+		
+		var item = this.App.GetItemByAlias(this.App.GetAlias(t)); 
 		if(!item) {
 			this.App.Cache.SetData("_EventClassItem", t);
 			this.App.Cache.SetData("_EventClass", function() {

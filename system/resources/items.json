@@ -259,6 +259,45 @@
 				}
 			},
 			"protocol": "<input type=\"text\" name=\"$nome\" value=\"$valore\" placeholder=\"$placeholder\" />"
+		},
+		"col-md-5": {
+			"alias": "col-md-5",
+			"tag": "div",
+			"icon": "columns",
+			"default_style": {
+				"children": {
+				},
+				"attributes": {
+				}
+			},
+			"protocol": "<div class=\"col-md-5\"></div>",
+			"visible": true
+		},
+		"col-md-4": {
+			"alias": "col-md-4",
+			"tag": "div",
+			"icon": "columns",
+			"default_style": {
+				"children": {
+				},
+				"attributes": {
+				}
+			},
+			"protocol": "<div clas=\"col-md-4\"></div>",
+			"visible": true
+		},
+		"col-md-3": {
+			"alias": "col-md-3",
+			"tag": "div",
+			"icon": "columns",
+			"default_style": {
+				"children": {
+				},
+				"attributes": {
+				}
+			},
+			"protocol": "<div class=\"col-md-3\"></div>",
+			"visible": true
 		}
 	}
 }
