@@ -200,7 +200,7 @@ class App {
 						chmod($_tmpfile, 0777);
 						return json_encode(["message" => "Saved successfully"]);
 					} else {
-						return json_encode(["error" => "Can't save the content"]);
+						return json_encode(["error" => "Can't save the content in ".$_tmpfile." - permission problems?"]);
 					}
 
 				} 

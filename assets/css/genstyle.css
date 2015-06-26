@@ -536,10 +536,10 @@ footer._sys-footer .portion input[type='text'] {
 
 footer._sys-footer .suggestions {
   position: absolute;
-  width: 210px;
-  min-height: 70px;
-  top: -71px;
-  left: 75px;
+  width: 100%;
+  min-height: 80px;
+  top: -82px;
+  left: 0px;
   background-color: white;
   border: 1px solid rgb(172, 172, 172);
 }

@@ -55,7 +55,7 @@ function echovar($n) {
 			<div class="buttons">
 				<span class="text-er"></span>
 				<a href="#" class="nodefault close-modal" action="CloseModal:Main.UpdateGraphicInterface">ANNULLA</a>
-				<a href="#" class="nodefault add-atts">AGGIUNGI</a>
+				<a href="#" class="nodefault add-atts">SALVA</a>
 			</div>
 		</div>
 </div>

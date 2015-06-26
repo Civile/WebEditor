@@ -3,7 +3,7 @@
 	<div class="input-group">
 		<div class="suggestions"></div>
     	<label class="main-label">Drawer</label>
-    	<input type="text" name="element-selector" value="" placeholder="element"/>
+		<input type="text" name="element-selector" value="" placeholder="element"/>
     </div>
     <div class="input-group">
 	    <input type="checkbox" name="pause-drawer" style=""/>
@@ -105,9 +105,8 @@
  	 * ElementSelector
 	*/
 	$(".drawer-tools input[name='element-selector']").on("keyup", function(e) {
-		e = $.event.fix(e);
-		var key = e.which || e.keyCode;
-
+		var key = e.which || e.charCode;
+		
 		if(key === 13) { //Selecting...
 			var item = TwigGen.GetItemByAlias($(this).val());
 			if(!item) {
@@ -120,8 +119,10 @@
 		} else { //Writing...
 			$(".suggestions").html("");
 			var _in = $(this).val();
+
 			$(".suggestions").css("display", "block");
 			var _list = TwigGen.ItemsByAliasOrNameSimilarity(_in.trim().toLowerCase(), 3);
+
 			if(_in.length < 1 || !_list.length) 
 				return $(".suggestions").css("display", "none");
 
@@ -129,6 +130,8 @@
 				$(".suggestions").append('<a href="nowere" data-tag="'+ _list[i].tag  +'" data-alias="'+ _list[i].alias +'" class="suggestion-alias">'+ _list[i].alias +'</a>');
 			}
 		}
+
+		return true;
 	});
 
 
