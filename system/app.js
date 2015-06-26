@@ -967,10 +967,11 @@ if (!String.includes) {
 			$(this).attr("_chain-id", chainid + (id));
 			if($(this).children().length) {
 				app.UpdateChainID(this);
-				console.log("Updating children");
 			}
 			id++;
 		});
+
+		return this;
 	};
 
 	/*
@@ -983,6 +984,8 @@ if (!String.includes) {
 			$(this).attr("_uid", tg.GetNextID() );
 			tg.UpdateUID($(this));
 		});
+
+		return this;
 	};
 
 	/*
@@ -1131,6 +1134,7 @@ if (!String.includes) {
 	*/
 	App.prototype.MakePotential = function(w) {
 		this.AddClassesRecursive(w, ["_potential", "_caption-chained"]);
+		return this;
 	};
 
 	/*
@@ -1180,6 +1184,7 @@ if (!String.includes) {
 		 $("head").find("style[_style-name='project-style']").each(function() {
 		 	$(this).remove();
 		 });
+		 return this;
 	};
 
 	/*
@@ -1895,8 +1900,8 @@ if (!String.includes) {
 			}
 		}
 
-		this.App.UpdateUID("#_canvas")
-			.App.UpdateChainID("#_canvas");
+		this.App.MakePotential("#_canvas").UpdateUID("#_canvas")
+			.UpdateChainID("#_canvas");
 
 		this.SetUniqueID(".__last", this.App.GetNextID());
 
