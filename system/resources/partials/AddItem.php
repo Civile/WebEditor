@@ -131,7 +131,7 @@
 				$(".text-er").html(d.error);
 			} else {
 				TwigGen.CloseModal()
-					.GetState("Main").UseItem( TwigGen.GetItemByAlias($("#add-item input[name='alias']").val()) )
+					.GetState("Main").UseItem( TwigGen.GetItemByAlias(name) )
 					.UpdateGraphicInterface();
 
 				cback = "<?php print echovar("callback"); ?>";

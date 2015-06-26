@@ -121,9 +121,11 @@ class App {
 
 				//Get stylesheets
 				$data["css"] = array();
+				$data["css_content"] = '';
 				foreach($parser->find('link') as $element) {
-					if($element->rel == "stylesheet") {
+					if($element->rel == "stylesheet" && !strpos($element->href, "bootstrap")) {
 						$data["css"][] = $element->href;
+						$data["css_content"] .= $this->getFileContent("projects/".$pname."/".$element->href);
 					}
 				}
 
@@ -211,7 +213,15 @@ class App {
 	}
 
 
-	
+	/*
+	 * GetFileContent
+	*/
+	public function getFileContent($file) {
+		if(!file_exists($file))
+			return "";
+		return file_get_contents($file);
+	}
+
 
 	/*
 	 * InitProjectDir

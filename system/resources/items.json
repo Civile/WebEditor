@@ -29,21 +29,6 @@
 			},
 			"protocol": "<form name=\"$nome\" action=\"$azione\" enctype=\"$enctype\"></form>"
 		},
-		"label": {
-			"alias": "label",
-			"tag": "label",
-			"icon": "",
-			"visible": true,
-			"default_style": {
-				"children": {
-				},
-				"attributes": {
-					"border": "1px dotted #333",
-					"display": "block"
-				}
-			},
-			"protocol": "<label>"
-		},
 		"select": {
 			"alias": "select",
 			"tag": "select",
@@ -353,19 +338,6 @@
 			},
 			"protocol": "<div class=\"row\"></div>"
 		},
-		"h1": {
-			"alias": "h1",
-			"visible": true,
-			"tag": "h1",
-			"icon": "header",
-			"default_style": {
-				"children": {
-				},
-				"attributes": {
-				}
-			},
-			"protocol": "<h1>H1</h1>"
-		},
 		"contenitore": {
 			"alias": "contenitore",
 			"visible": true,
@@ -379,6 +351,37 @@
 				}
 			},
 			"protocol": "<div></div>"
+		},
+		"h1": {
+			"alias": "h1",
+			"visible": true,
+			"tag": "h1",
+			"icon": "header",
+			"default_style": {
+				"children": {
+				},
+				"attributes": {
+					"height": "auto",
+					"width": "auto"
+				}
+			},
+			"protocol": "<h1>H1</h1>"
+		},
+		"label": {
+			"alias": "label",
+			"visible": true,
+			"tag": "label",
+			"icon": "plus-square-o",
+			"default_style": {
+				"children": {
+				},
+				"attributes": {
+					"border": "1px dotted #333",
+					"display": "block",
+					"height": "auto"
+				}
+			},
+			"protocol": "<label>label</label>"
 		}
 	}
 }

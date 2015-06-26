@@ -441,6 +441,13 @@
 	};
 
 	/*
+	 * CountOccurrences (of a char in a string)
+	*/
+	App.prototype.CountOccurrences = function(string, c) {
+		return (string.length - string.replace(new RegExp(c,"g"), '').length) / c.length;
+	};
+
+	/*
 	 * GetClasses
 	 * 
 	*/
@@ -1028,6 +1035,23 @@
 
 		return this;
 	};
+
+	/*
+     * AppendStyle
+     * s: css string
+     * n: css link name
+	*/
+	App.prototype.AppendStyle = function(s, n) {
+		var sel = "style[_style-name='"+ n +"']";
+
+		if(!$("head").find(sel).length) {
+			$("head").append('<style _style-name="'+ n +'"></style>');
+		}
+
+		$("head").find(sel).append(s);
+		return this;
+	};
+
 
 	/*
 	 * GetProjectStyle
@@ -2105,7 +2129,7 @@
 		   		var _self = this;
 		   		this.App.AjaxCall(AppUrl("/server/index.php"), {cmd:"loadLayout", project:project, page:page }, function(d) {				
 					d = JSON.parse(d);
-
+					console.log(d);
 					if(!NULL(d.error)) {
 						alert("Error: " + d.error);
 					} else {
@@ -2117,13 +2141,8 @@
 			   			} else $(t).html(d.body);
 
 			   			//Load css
-			   			if(d.css) {
-			   				for(var i in d.css) {
-			   					var link = d.css[i];
-			   					var url = "server/projects/form2/" + link;
-			   					if(!_self.App.HasElementByAttr("href",  url) && !_self.App.HasStylesheetByFileName(link.split("/").pop())) 
-			   						$("head").append('<link role="supplement" href="'+url+'" type="text/css" rel="stylesheet" />');
-			   				}
+			   			if(d.css_content) {
+			   				_self.App.AppendStyle(d.css_content, "project-style");
 			   			}
 
 			   			_self.App.EmpowerContainer("#_canvas");
@@ -2477,3 +2496,4 @@ function AppUrl(route) {
 function isFunc(func) {
 	return typeof func === "function";
 };
+

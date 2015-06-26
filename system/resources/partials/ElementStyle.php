@@ -60,8 +60,14 @@ if(!$obj) {
 	     * Save style
 		*/
 		$(".css-modal .add-style").on("click", function() {
+			//Check valid parentheses
+			var text = $("pre.jush").text();
+			var openg = TwigGen.CountOccurrences(text, "{");
+			var closeg = TwigGen.CountOccurrences(text, "}");
+	 		if(openg != closeg) 
+	 			return $(".text-er").text("Il css non è valido. Controlla i caratteri di apertura e chiusura");
 			//Bugged : toJSON: if the css isn't right (example .page {  missing closing bracket ) everything crash
-			TwigGen.AppendStyleFromJSON( CSSJSON.toJSON($("pre.jush").text() ) , "project-style")
+			TwigGen.AppendStyleFromJSON( CSSJSON.toJSON(text) , "project-style")
 				.CloseModal();
 		});
 
