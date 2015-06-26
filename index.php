@@ -26,8 +26,11 @@
     <div id="_canvas" class="_potential"></div>
 
 
+
+    
     <footer class="_sys-footer">
-    <label class="title-label">TwigGen</label>
+        <div id="__loading_dialog"></div>
+        <label class="title-label">TwigGen</label>
         <div class="_tools-temp"></div>
     </footer>
     <div id="modal" class="_modal"></div>

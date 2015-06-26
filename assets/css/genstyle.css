@@ -22,7 +22,19 @@ html { padding-bottom:90px !important;}
 */
 ._edt {};
 
+/*UI*/
 .ui-tooltip { z-index:999999 !important; }
+
+.ui-dialog .ui-dialog-content.ui-dialog-spinner{
+    background: url("http://static2.icbin.com/library/images/ajax-loader.gif") no-repeat scroll 5px 15px transparent;
+    padding: 30px 0 0px 70px;
+    border: 2px solid #DDDDDD;
+    font-weight: 900;
+    line-height: 1em;
+    font-size: 1.1em;
+    color: #737373;
+}
+
 
 .abs {
 	position:absolute !important;
