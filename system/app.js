@@ -1008,10 +1008,23 @@
 	};
 
 	/*
+	 * EmptyBodyFromEverything
+	*/
+	App.prototype.EmptyBodyFromEverything = function() {
+		$("html").find("._caption-chained").each(function() {
+			$(this).remove();
+		});
+		$("html").find("style[_style-name='project-style']").each(function() {
+			$(this).remove();
+		});
+		return this;
+	};
+
+	/*
 	 * EmptyStyle
 	*/
 	App.prototype.EmptyStyle = function() {
-		 $("html").find("link[_origin='_project']").each(function() {
+		 $("html").find("style[_style-name='project-style']").each(function() {
 		 	$(this).remove();
 		 });
 	};

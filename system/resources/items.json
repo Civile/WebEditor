@@ -29,19 +29,6 @@
 			},
 			"protocol": "<form name=\"$nome\" action=\"$azione\" enctype=\"$enctype\"></form>"
 		},
-		"select": {
-			"alias": "select",
-			"tag": "select",
-			"visible": true,
-			"icon": "navicon",
-			"default_style": {
-				"children": {
-				},
-				"attributes": {
-				}
-			},
-			"protocol": "<select name=\"$nome\"></select>"
-		},
 		"footer": {
 			"alias": "footer",
 			"tag": "footer",
@@ -382,6 +369,32 @@
 				}
 			},
 			"protocol": "<label>label</label>"
+		},
+		"select": {
+			"alias": "select",
+			"visible": true,
+			"tag": "select",
+			"icon": "navicon",
+			"default_style": {
+				"children": {
+				},
+				"attributes": {
+				}
+			},
+			"protocol": "<select name=\"$nome\">\n<option>1</option>\n</select>"
+		},
+		"option": {
+			"alias": "option",
+			"tag": "option",
+			"icon": "file",
+			"default_style": {
+				"children": {
+				},
+				"attributes": {
+				}
+			},
+			"protocol": "<option value=\"$valore\">opzione</option>",
+			"visible": true
 		}
 	}
 }

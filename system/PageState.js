@@ -196,44 +196,35 @@
 	/*
 	 * LoadProject
 	*/
-	PageState.prototype.LoadProject = function(n, c) {
+	PageState.prototype.LoadProject = function(file, c) {
 		ctx = this;
 
-		this.App.EmptyBody()
-			.EmptyStyle();
+		this.App.EmptyBodyFromEverything();
 
-		$.ajax({
-		  type: "POST",
-		  url: AppUrl(n),
-		  data: null,
-		  success: function(data) {
-		  	ctx.PreloadDocument.call(ctx, AppUrl(n), data);
-		  },
-		  dataType: "html"
-		});		
+		var page = file.split("/").pop();
+		var _tmp = file.split("/");
+		var project = _tmp[_tmp.length - 2];
+
+		this.App.AjaxCall(AppUrl("/server/index.php"), {cmd:"loadLayout", project:project, page:page }, function(d) {
+			d = JSON.parse(d);
+			if(d.error) {
+				alert("Error while loading project " + project);
+			} else {
+
+				//Load body content
+				$("#_canvas").html(d.body);
+
+				//Load css
+	   			if(d.css_content) {
+	   				ctx.App.AppendStyle(d.css_content, "project-style");
+	   			}
+
+	   			ctx.App.EmpowerContainer("#_canvas");
+			}
+			
+		});
 	};	
 	
-	/*
-	 * PreloadDocument
-	*/
-	PageState.prototype.PreloadDocument = function(n, r) {
-		this.SetCurrentFile(n, r)
-			.CreateTempView(this.CurrentFile().data)
-			.GetAndAppendCSS(this.CurrentFile().data)
-			//.GetScripts()
-			.LoadInView()
-			.AttachClass("#_canvas", ["_potential", "_caption-chained"])
-			.RemoveTempView();
-			this.App.UpdateChainID("#_canvas");
-			this.App.UpdateUID("#_canvas");
-			//$("body").append(r);
-	};
-
-
-
-
-
-
 
 	/*
 	 * ClearCurlyBrackets
@@ -244,6 +235,9 @@
 	    return s.replace(/{(.*?)}/g, "$13$2")
 	};
 
+	/*
+	 * AttachClass
+	*/
 	PageState.prototype.AttachClass = function(w, classes) {
 		for(var i in classes) {
 			$(w + " *").addClass(classes[i]);
@@ -251,23 +245,6 @@
 		return this;
 	};
 
-
-	PageState.prototype.CreateTempView = function(d) {
-		$("body").append('<div style="display:none;" class="__tempview"></div>');
-		if(!NULL(d)) 
-			$(".__tempview").html(d);
-		return this;
-	};
-
-	PageState.prototype.LoadInView = function() {
-		$("#_canvas").append($(".__tempview").html());
-		return this;
-	};
-
-	PageState.prototype.RemoveTempView = function() {
-		$(".__tempview").remove();
-		return this;
-	};
 
 	/*
 	 * LoadCSS
@@ -278,46 +255,7 @@
      	$("head").append(cssLink); 
 	};
 
-	/*
-	 * GetAndAppendCSS
-	*/
-	PageState.prototype.GetAndAppendCSS = function(tmp) {
-		var ctx = this;
 	
-		//<link>
-		$(".__tempview").find("link").each(function() {
-			var href = $(this).attr("href");
-			var lastseg = href.split("/").pop();
-			console.log(lastseg);
-			href = ctx.CurrentFile().url + "/" + href.replace(lastseg, "").replace("./", "") + lastseg;
-
-			ctx.LoadCSS(href);
-		});
-		//<style>
-		$(tmp).find("style").each(function() {
-			var s = $(this).clone();
-			$("head").append(s);
-			$(this).remove();
-		});
-		return this;
-	};
-
-	/*
-	 * ParseHead
-	*/
-	PageState.prototype.ParseHead = function(tmp) {
-		var ctx = this;
-
-		$(tmp).find("meta, title, style").each(function() {
-			$(this).remove();
-		});
-
-		//Save head
-		ctx.SaveTempData("head", $(tmp).find("head").clone());
-
-		$(tmp).find("head").remove();
-		return this;
-	};
 
 
 	PageState.prototype.SaveTempData = function(n, v) {
