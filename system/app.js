@@ -144,13 +144,18 @@
 		$(document).on("keydown", ':not([rules=""])', function(e) {
 			if(typeof $(this).attr("rules") === "undefined")
 				return;
-			if( $(this).attr("rules").indexOf("|") !== -1 )
-				var rules = $(this).attr("rules").split("|");
+			
+			var rules = [];
+			if( $(this).attr("rules").indexOf("|") !== -1 ) {
+				rules = $(this).attr("rules").split("|");
+			} else rules.push($(this).attr("rules"));
+
 			for(var i in rules) {
 				var m = "_RuleEvent"+rules[i].replace("-", "");
 				if(NULL(app[m])) return true;
 				app["_RuleEvent"+rules[i].replace("-", "")].call(this, e);
 			}
+			
 		});
 		/*Click*/
 		$(document).on("click", ':not([action=""])', function(e) {
@@ -161,7 +166,6 @@
 					for(var i in a) {
 						if(a[i].indexOf(".") !== -1) {
 							var state = a[i].split(".")[0];
-							console.log(state);
 							if(state) app.GetState(state)[a[i].replace(state+".", "")]();
 						} else {
 							if(!NULL(app[a[i]])) {
@@ -310,6 +314,26 @@
 		this.GetState(name).State = StatesState.PAUSED;
 		if(this.GetState(name)["OnPause"]) {
 			this.GetState(name).OnPause();
+		}
+		return this;
+	};
+
+	/*
+     * PauseAllStates
+	*/
+	App.prototype.PauseAllStates = function() {
+		for(var i in this._States._ActualStates) {
+			this.PauseState(i);
+		}
+		return this;
+	};
+
+	/*
+     * ResumeAllStates
+	*/
+	App.prototype.ResumeAllStates = function() {
+		for(var i in this._States._ActualStates) {
+			this.ResumeState(i);
 		}
 		return this;
 	};
@@ -892,6 +916,9 @@
 	 * GetPublicAttributes
 	*/
 	App.prototype.GetPublicAttributes = function(t, alias) {
+		if(!$(t)[0])
+			return;
+
 		var _pat = this.GetProtocolAttributes(alias);
 		var _cats = $(t)[0].attributes;
 		for(var i in _cats) {
@@ -1680,8 +1707,9 @@
 			if(!NULL(this.CurrentItem().default_style) && this.CurrentItem().default_style != "") {
 				this.App.ApplyStyleJSON(".__last", this.CurrentItem()["default_style"].attributes);
 			}
+			//Add default content
 			if(!NULL(this.CurrentItem().protocol) && this.CurrentItem().protocol != "") {
-				this.LastCaption().html($(this.CurrentItem().protocol).text());
+				this.LastCaption().html($(this.CurrentItem().protocol).html());
 			}
 		}
 
@@ -1988,6 +2016,9 @@
 	 * EventDelete
 	*/
 	ContextState.prototype._EventDelete = function(t) {
+		if(NULL($(t).attr("_uid")))
+			return;
+
 		if(confirm("Sicuro di voler eliminare l'elemento e i tutti i suoi contenuti?"))
 			this.RemoveElementByChainID($(t).attr("_chain-id"));
 	};
@@ -1996,7 +2027,9 @@
 	 * EventZoom
 	*/
 	ContextState.prototype._EventZoom = function(t) {
-		
+		if(NULL($(t).attr("_uid")))
+			return;
+
 		var item = this.GetItem(t);
 		if(!item)
 			return;
@@ -2014,7 +2047,9 @@
 	 * EventValues
 	*/
 	ContextState.prototype._EventValues = function(t) {
-		
+		if(NULL($(t).attr("_uid")))
+			return;
+
 		var item = this.GetItem(t);
 		if(!item)
 			return;
@@ -2048,7 +2083,9 @@
 	 * EventHTML
 	*/
 	ContextState.prototype._EventHTML = function(t) {
-		
+		if(NULL($(t).attr("_uid")))
+			return;
+
 		var item = this.GetItem(t);
 		if(!item)
 			return;
@@ -2069,7 +2106,9 @@
 	 * Class
 	*/
 	ContextState.prototype._EventClass = function(t) {
-		
+		if(NULL($(t).attr("_uid")))
+			return;
+
 		var item = this.GetItem(t);
 		if(!item) {
 			this.App.Cache.SetData("_EventClassItem", t);
@@ -2090,6 +2129,7 @@
 			classes: this.App.GetClasses($(t)),
 			id:      $(t).attr("id") || ""
 		};
+
 		this.App.OpenPageModal(TwigGen.Conf.Paths.Partials + "ElementClass.php", null, p);
 	};
 
@@ -2097,6 +2137,9 @@
 	 * EventCopy
 	*/
 	ContextState.prototype._EventCopy = function(t) {
+		if(NULL($(t).attr("_uid")))
+			return;
+
 		var cloned = $(t).clone();
 		//ClearCloned
 		$(cloned).removeClass("context-menu-active");
@@ -2112,6 +2155,9 @@
 	 * EventCut
 	*/
 	ContextState.prototype._EventCut = function(t) {
+		if(NULL($(t).attr("_uid")))
+			return;
+
 		if(!this.HasInCopy(t)) {
 			this.Action.Copied.push(t);
 			$(t).remove();
@@ -2134,6 +2180,10 @@
 	 * EventPaste
 	*/
 	ContextState.prototype._EventPaste = function(t) {
+
+		if(NULL($(t).attr("_uid")))
+			return;
+
 		for(var i in this.Action.Copied) {
 			var el = this.Action.Copied[i];
 			$(t).append(el);
@@ -2151,6 +2201,9 @@
 	 * TODO : scripts?
 	*/
 	ContextState.prototype._EventLoadIn = function(t) {
+		if(NULL($(t).attr("_uid")))
+			return;
+
 		//Prepare ExplorerCallback
 		this.App.Cache.SetData("ExplorerCallback", function(file) {
 		   	if(this.App.GetState("Page").FileAllowed(file)) {
@@ -2217,6 +2270,8 @@
 	 * RemoveElementByChainID
 	*/
 	ContextState.prototype.RemoveElementByChainID = function(cid) {
+		if(!cid) return;
+
 		var p = $("[_chain-id='"+cid+"']").parent();
 		$("[_chain-id='"+cid+"']").remove();
 		this.App.UpdateChainID(p);
@@ -2230,6 +2285,8 @@
 	 * A loaded document can't have the attribute ALIAS
 	*/
 	ContextState.prototype.GetItem = function(t) {
+		if(NULL($(t).attr("_uid")))
+			return;
 
 		var index = this.App.GetAlias(t); //loaded document
 		if(!index) {

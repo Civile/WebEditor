@@ -370,19 +370,6 @@
 			},
 			"protocol": "<label>label</label>"
 		},
-		"select": {
-			"alias": "select",
-			"visible": true,
-			"tag": "select",
-			"icon": "navicon",
-			"default_style": {
-				"children": {
-				},
-				"attributes": {
-				}
-			},
-			"protocol": "<select name=\"$nome\">\n<option>1</option>\n</select>"
-		},
 		"option": {
 			"alias": "option",
 			"tag": "option",
@@ -434,6 +421,19 @@
 			},
 			"protocol": "<p>paragrafo</p>",
 			"visible": true
+		},
+		"select": {
+			"alias": "select",
+			"visible": true,
+			"tag": "select",
+			"icon": "navicon",
+			"default_style": {
+				"children": {
+				},
+				"attributes": {
+				}
+			},
+			"protocol": "<select name=\"$nome\">\n<option>option</option>\n</select>"
 		}
 	}
 }

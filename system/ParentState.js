@@ -9,6 +9,7 @@
 		this.App = null;
 		this._C; //callbacks collection
 		this._EventsNamespaces;
+		this.State = StatesState.INACTIVE;
 	};
 
 	/*

@@ -35,12 +35,14 @@
             $("#_canvas *").each(function() {
                 $(this).removeClass("_caption-chained");
             });
+            TwigGen.PauseAllStates();
             $(this).find("i").removeClass("fa-toggle-on").addClass("fa-toggle-off");
         }
         else {
             $("#_canvas *").each(function() {
                 $(this).addClass("_caption-chained");
             });
+            TwigGen.ResumeAllStates();
             $(this).find("i").removeClass("fa-toggle-off").addClass("fa-toggle-on");
         }
     });
