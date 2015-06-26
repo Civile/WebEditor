@@ -17,7 +17,7 @@
 				</a>
     		</div>
             <div class="_option">
-                <a href="#" class="nodefault">
+                <a href="" target="_blank" class="_preview-link">
                     <i title="Preview" class="fa fa-desktop"></i>
                 </a>
             </div>
@@ -44,6 +44,15 @@
             });
             TwigGen.ResumeAllStates();
             $(this).find("i").removeClass("fa-toggle-off").addClass("fa-toggle-on");
+        }
+    });
+
+    /*
+     * Preview link
+    */
+    $("a._preview-link").on("click", function() {
+        if($(this).attr("href")) {
+            window.open($(this).attr("href"));
         }
     });
 </script>

@@ -227,6 +227,7 @@
 	   			ctx.App.EmpowerContainer("#_canvas");
 
 	   			ctx.SetCurrentFile(file, d.html);
+	   			$("._preview-link").attr("href", AppUrl(ctx.CurrentFile().url));
 			}
 			
 		});
