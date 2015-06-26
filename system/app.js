@@ -1986,7 +1986,7 @@ if (!String.includes) {
 	            "NullCopy": {name: "Annulla copia", icon: "null-copy"},
 	            "Free": {name: "Libera", icon: "free"},
 	            "Delete": {name: "Rimuovi", icon: "delete"},
-	            "LoadIn": {name: "Carica", icon: ""},
+	            "LoadIn": {name: "Importa", icon: ""},
 	            "Attributi": {
                 	"name": "Attributi",
                 	"items": {
