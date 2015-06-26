@@ -80,7 +80,7 @@
 	*/
 	$("._mod-content").off().on("click", function() {
 		var el = "[_chain-id='<?php print echovar("chainid") ?>']";
-		$(el).html(editor.getValue());
+		$(el).html(editor.getValue().replace(/\&nbsp;/gi, " "));
 		TwigGen.UpdateChainID("body");
 		TwigGen.CloseModal();
 	})

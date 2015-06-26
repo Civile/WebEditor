@@ -12,6 +12,7 @@ body, html {
   -o-user-select: none;
   user-select: none;   
   padding:10px;
+  background:#ddd;
 }
 
 html { padding-bottom:90px !important;}
@@ -58,6 +59,7 @@ label.blue-label {
 
 .context-menu-active {
   opacity:0.5;
+    background-color: #193359;
 }
 
 input.input-maxwidth {
@@ -112,11 +114,12 @@ body .ui-tooltip {
 
 ._caption-chained {
 	outline:1px dotted black !important;
+  border:2px solid black;
 }
 
 ._caption-chained:hover {
   outline:2px dotted red !important;
-  background: rgba(255, 169, 61, 0.17) !important;
+  background: rgba(48, 136, 210, 0.17) !important;
 }
 
 ._caption-chained:hover {

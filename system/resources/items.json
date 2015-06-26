@@ -477,6 +477,35 @@
 				}
 			},
 			"protocol": "<table>\n<tr><td>TABELLA</td></tr>\n</table>"
+		},
+		"colonna tabella allargata": {
+			"alias": "colonna tabella allargata",
+			"tag": "td",
+			"icon": "plus-square-o",
+			"default_style": {
+				"children": {
+				},
+				"attributes": {
+					"width": "10%"
+				}
+			},
+			"protocol": "<td></td>",
+			"visible": true
+		},
+		"riga tabella allargata": {
+			"alias": "riga tabella allargata",
+			"visible": true,
+			"tag": "tr",
+			"icon": "plus-square-o",
+			"default_style": {
+				"children": {
+				},
+				"attributes": {
+					"width": "100%",
+					"position": "relative"
+				}
+			},
+			"protocol": "<tr></tr>"
 		}
 	}
 }

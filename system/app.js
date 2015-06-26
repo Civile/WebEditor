@@ -2148,7 +2148,14 @@ if (!String.includes) {
 	            "Copy": {name: "Copia", icon: "copy"},
 	            "Paste": {name: "Incolla", icon: "paste"},
 	            "NullCopy": {name: "Annulla copia", icon: "null-copy"},
-	            "Free": {name: "Libera", icon: "free"},
+	            "Modifica": {
+                	"name": "Modifica",
+                	"items": {
+                		"Empty": {"name": "Svuota"},
+                		"FreeWidth": {name: "Libera lunghezza", icon: "free"},
+                		"FreeHeight": {name: "Libera altezza", icon: "free"},
+                	}
+                },
 	            "Delete": {name: "Rimuovi", icon: "delete"},
 	            "LoadIn": {name: "Importa", icon: ""},
 	            "Attributi": {
@@ -2190,9 +2197,18 @@ if (!String.includes) {
 		return this;
 	};
 
-
-	ContextState.prototype._EventFree = function(t) {
+	/*
+	 * EventFreeWidth
+	*/
+	ContextState.prototype._EventFreeWidth = function(t) {
 		$(t).width("");
+	};
+
+	/*
+	 * EventFreeHeight
+	*/
+	ContextState.prototype._EventFreeHeight = function(t) {
+		$(t).height("");
 	};
 
 	/*
@@ -2211,6 +2227,17 @@ if (!String.includes) {
 
 		if(confirm("Sicuro di voler eliminare l'elemento e i tutti i suoi contenuti?"))
 			this.RemoveElementByChainID($(t).attr("_chain-id"));
+	};
+
+	/*
+     * EventEmpty
+	*/
+	ContextState.prototype._EventEmpty = function(t) {
+		if(NULL($(t).attr("_uid")))
+			return;
+
+		$(t).html("");
+			
 	};
 
 	/*
