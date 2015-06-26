@@ -85,20 +85,6 @@
 			},
 			"protocol": "<tbody></tbody>"
 		},
-		"tabella": {
-			"alias": "tabella",
-			"tag": "table",
-			"visible": true,
-			"icon": "table",
-			"default_style": {
-				"children": {
-				},
-				"attributes": {
-					"border": "1px dotted blue"
-				}
-			},
-			"protocol": "<table></table>"
-		},
 		"span": {
 			"alias": "span",
 			"tag": "span",
@@ -204,19 +190,6 @@
 				}
 			},
 			"protocol": "<div class=\"col-md-5\"></div>",
-			"visible": true
-		},
-		"col-md-4": {
-			"alias": "col-md-4",
-			"tag": "div",
-			"icon": "columns",
-			"default_style": {
-				"children": {
-				},
-				"attributes": {
-				}
-			},
-			"protocol": "<div clas=\"col-md-4\"></div>",
 			"visible": true
 		},
 		"col-md-3": {
@@ -464,6 +437,46 @@
 				}
 			},
 			"protocol": "<article>article</article>"
+		},
+		"col-md-4": {
+			"alias": "col-md-4",
+			"visible": true,
+			"tag": "div",
+			"icon": "columns",
+			"default_style": {
+				"children": {
+				},
+				"attributes": {
+				}
+			},
+			"protocol": "<div class=\"col-md-4\"></div>"
+		},
+		"col-md-20": {
+			"alias": "col-md-20",
+			"tag": "div",
+			"icon": "file",
+			"default_style": {
+				"children": {
+				},
+				"attributes": {
+				}
+			},
+			"protocol": "<div class=\"col-md-20\" prova=\"$nomediv\">QUESTO</div> ",
+			"visible": true
+		},
+		"tabella": {
+			"alias": "tabella",
+			"visible": true,
+			"tag": "table",
+			"icon": "table",
+			"default_style": {
+				"children": {
+				},
+				"attributes": {
+					"border": "1px dotted blue"
+				}
+			},
+			"protocol": "<table>\n<tr><td>TABELLA</td></tr>\n</table>"
 		}
 	}
 }

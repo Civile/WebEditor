@@ -282,6 +282,7 @@ class App {
 	private function getStandardHeadLinks() {
 		return array(
 			'<link sys rel="stylesheet" href="assets/css/bootstrap.min.css">',
+			'<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>',
 			'<script sys type="text/javascript" src="assets/js/bootstrap.min.js"></script>'
 		);
 	}

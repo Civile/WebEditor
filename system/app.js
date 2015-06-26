@@ -7,6 +7,8 @@
 /*
  * Da fixare: attacca caption temp solo al primo movimento del mouse, non al click
  * Importante perchè se provo a fare il doppio click su un elemento mi ritrovo il caption temp sotto al puntatore e non avvia l'operazione
+ * se creo un nuovo progetto e clicco salva, il valore iniziale del campo nome è UNDEFINED
+	
 */
 
 
@@ -963,8 +965,10 @@ if (!String.includes) {
 		$(p).children().each(function(i) {
 			if(!$(this).hasClass("_caption-chained")) return;
 			$(this).attr("_chain-id", chainid + (id));
-			if($(this).children().length)
+			if($(this).children().length) {
 				app.UpdateChainID(this);
+				console.log("Updating children");
+			}
 			id++;
 		});
 	};
@@ -1879,14 +1883,20 @@ if (!String.includes) {
 		//Default Style
 		var defstyle = null;
 		if(this.CurrentItem()) {
+			//Apply default style
 			if(!NULL(this.CurrentItem().default_style) && this.CurrentItem().default_style != "") {
 				this.App.ApplyStyleJSON(".__last", this.CurrentItem()["default_style"].attributes);
 			}
 			//Add default content
 			if(!NULL(this.CurrentItem().protocol) && this.CurrentItem().protocol != "") {
-				this.LastCaption().html($(this.CurrentItem().protocol).html());
+				this.LastCaption().html($(this.CurrentItem().protocol).html()).find("*").each(function() {
+					$(this).addClass("_potential");
+				});
 			}
 		}
+
+		this.App.UpdateUID("#_canvas")
+			.App.UpdateChainID("#_canvas");
 
 		this.SetUniqueID(".__last", this.App.GetNextID());
 
@@ -2177,7 +2187,7 @@ if (!String.includes) {
 
 
 	ContextState.prototype._EventFree = function(t) {
-		$(t).width("").height("");
+		$(t).width("");
 	};
 
 	/*
