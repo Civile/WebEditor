@@ -220,6 +220,8 @@
 	   			}
 
 	   			ctx.App.EmpowerContainer("#_canvas");
+
+	   			ctx.SetCurrentFile(file, d.html);
 			}
 			
 		});

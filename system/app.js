@@ -6,8 +6,6 @@
 
 
 /*
- * Bug da correggere subito
- * Dopo aver creato un protocollo questo non viene utilizzato dal MainState
  *
  * LO stile di default deve apparire nel modali di modifica stile
 */
@@ -1030,6 +1028,26 @@
 	};
 
 	/*
+	 * HasCssElement
+	*/
+	App.prototype.HasCssElement = function(e, n) {
+		var css = $("head").find("style[_style-name='"+ n +"']").text();
+		if(!css) {
+			return false;
+		}
+		else {
+			css = this.GetProjectStyleAsJSON(n);
+			for(var i in css.children) {
+				if(i === e) {
+					return true;
+				}
+			}
+			return false;
+		}
+	};
+
+
+	/*
 	 * Apply style from JSON
 	*/
 	App.prototype.AppendStyleFromJSON = function(json, name) {
@@ -1634,8 +1652,10 @@
 				if(chain.ParentRing)
 					c.addClass("_parent-ring");
 
-				//Set default content
-				//var cont = this.GetContentOfItem(this->CurrentItem());
+				/*Prepare tag css*/
+				if(!this.App.HasCssElement(this.CurrentItem().tag, "project-style"))
+					this.App.AppendStyle(this.CurrentItem().tag+" {" + "\n\n}\n\n", "project-style");
+				
 		}
 		return this;
 	};
@@ -1664,6 +1684,7 @@
 				this.LastCaption().html($(this.CurrentItem().protocol).text());
 			}
 		}
+
 		this.SetUniqueID(".__last", this.App.GetNextID());
 
 		return this;

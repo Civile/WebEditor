@@ -395,6 +395,45 @@
 			},
 			"protocol": "<option value=\"$valore\">opzione</option>",
 			"visible": true
+		},
+		"article": {
+			"alias": "article",
+			"visible": true,
+			"tag": "article",
+			"icon": "file",
+			"default_style": {
+				"children": {
+				},
+				"attributes": {
+				}
+			},
+			"protocol": "<article>article</article>"
+		},
+		"lista": {
+			"alias": "lista",
+			"tag": "ul",
+			"icon": "list-ul",
+			"default_style": {
+				"children": {
+				},
+				"attributes": {
+				}
+			},
+			"protocol": "<ul>lista</ul>",
+			"visible": true
+		},
+		"paragrafo": {
+			"alias": "paragrafo",
+			"tag": "p",
+			"icon": "paragraph",
+			"default_style": {
+				"children": {
+				},
+				"attributes": {
+				}
+			},
+			"protocol": "<p>paragrafo</p>",
+			"visible": true
 		}
 	}
 }
