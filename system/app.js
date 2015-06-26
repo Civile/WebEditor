@@ -2398,7 +2398,7 @@ if (!String.includes) {
 	*/
 	ContextState.prototype._EventPaste = function(t) {
 
-		if(NULL($(t).attr("_uid")))
+		if(!$(t).hasClass("_potential"))
 			return;
 
 		for(var i in this.Action.Copied) {
