@@ -100,7 +100,7 @@
 
 		//Attach css
 		var css = this.App.GetProjectStyle("project-style");
-
+		
 		var d = {
 			cmd: "saveLayout",
 			tree: this.App.ClearFromPrivate(tree),
@@ -200,11 +200,16 @@
 		ctx = this;
 
 		this.App.EmptyBodyFromEverything();
-
-		var page = file.split("/").pop();
-		var _tmp = file.split("/");
-		var project = _tmp[_tmp.length - 2];
-
+		
+		if(file.indexOf("/") !== -1) {
+			var page = file.split("/").pop();
+			var _tmp = file.split("/");
+			var project = _tmp[_tmp.length - 2];
+		} else {
+			page = "index.html";
+			project = file;
+		}
+		
 		this.App.AjaxCall(AppUrl("/server/index.php"), {cmd:"loadLayout", project:project, page:page }, function(d) {
 			d = JSON.parse(d);
 			if(d.error) {

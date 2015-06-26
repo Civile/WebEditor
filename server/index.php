@@ -111,6 +111,11 @@ class App {
 			$data = array();
 
 			//Get html content
+			if(!file_exists("projects/".$pname."/".$page)) {
+				return json_encode(["error" => "missing project"]);
+				exit();
+			}
+			
 			$html = file_get_contents("projects/".$pname."/".$page);
 			if($html) 
 				$data["html"] = $html;

@@ -4,6 +4,10 @@
  ==========================================
 */
 
+/*
+ * Da fixare: attacca caption temp solo al primo movimento del mouse, non al click
+*/
+
 
 /*POLYFILLS*/
 if (!String.includes) {
@@ -217,6 +221,15 @@ if (!String.includes) {
 
 		//Init canvas
 		$("#_canvas").width("100%").css("minHeight", $(window).innerHeight());
+
+		//Check requested preload
+		var prj = null, page = null;
+		if((prj = this.GetUrlVars()["project"])) {
+			if(this.GetUrlVars()["page"])
+				page = this.GetUrlVars()["page"];
+			else page = "index.html";
+			this.LoadProject.call(this.GetState("Page"), prj+"/"+page, null);
+		}
 	};
 
 
@@ -451,6 +464,18 @@ if (!String.includes) {
 		}
 		return this;
 	};
+
+	/*
+	 * GetUrlVars
+	*/
+	App.prototype.GetUrlVars = function() {
+		var vars = {};
+		var parts = window.location.href.replace(/[?&]+([^=&]+)=([^&]*)/gi, function(m,key,value) {
+			vars[key] = value;
+		});
+		return vars;
+	};
+
 
 	/*
 	 * Validator
@@ -1135,7 +1160,7 @@ if (!String.includes) {
 		$("html").find("._caption-chained").each(function() {
 			$(this).remove();
 		});
-		$("html").find("style[_style-name='project-style']").each(function() {
+		$("head").find("style[_style-name='project-style']").each(function() {
 			$(this).remove();
 		});
 		return this;
@@ -1145,7 +1170,7 @@ if (!String.includes) {
 	 * EmptyStyle
 	*/
 	App.prototype.EmptyStyle = function() {
-		 $("html").find("style[_style-name='project-style']").each(function() {
+		 $("head").find("style[_style-name='project-style']").each(function() {
 		 	$(this).remove();
 		 });
 	};
@@ -1180,15 +1205,52 @@ if (!String.includes) {
 		if($("head").find(sel)) 
 			$("head").find(sel).remove();
 		
+		//Add #_canvas scope
+		this.ScopeJSONCSS(json);
+
 		var css = "\n" + CSSJSON.toCSS(json);
 		if(NULL(css) || css == "") 
 			return;
 
 		$("head").append('<style _style-name="'+ name +'"></style>')
-			.find(sel).text(css);
-
+			.find(sel).text( css );
+	
 		return this;
 	};
+
+	/*
+	 * ScopeJSONCSS
+	 * add #_canvas parent to each selector
+	*/
+	App.prototype.ScopeJSONCSS = function(json) {
+		for(var i in json.children) {
+			
+			json.children["#_canvas " + i] = json.children[i];
+			
+			if(json.children[i]["children"])
+				this.ScopeJSONCSS(json.children[i]["children"]);
+
+			delete json.children[i];
+		}
+	};
+
+
+	/*
+	 * RemoveScopeJSONCSS
+	 * Remove #_canvas parent from each selector
+	*/
+	App.prototype.RemoveScopeJSONCSS = function(json) {
+		for(var i in json.children) {
+			
+			json.children[i.replace(/#_canvas/gi, '').trim()] = json.children[i];
+			
+			if(json.children[i]["children"])
+				this.RemoveScopeJSONCSS(json.children[i]["children"]);
+
+			delete json.children[i];
+		}
+	};
+
 
 	/*
      * AppendStyle
@@ -1201,8 +1263,12 @@ if (!String.includes) {
 		if(!$("head").find(sel).length) {
 			$("head").append('<style _style-name="'+ n +'"></style>');
 		}
+		
+		var json = CSSJSON.toJSON(s);
+		//Add #_canvas scope
+		this.ScopeJSONCSS(json);
 
-		$("head").find(sel).append(s);
+		$("html").find(sel).append(CSSJSON.toCSS(json));
 		return this;
 	};
 
@@ -1210,8 +1276,17 @@ if (!String.includes) {
 	/*
 	 * GetProjectStyle
 	*/
-	App.prototype.GetProjectStyle = function(name) {
-		return $("head").find("style[_style-name='"+ name +"']").text();
+	App.prototype.GetProjectStyle = function(name, withscope) {
+
+		if(NULL(withscope)) {
+			var css = $("head").find("style[_style-name='"+ name +"']").text();
+			var json = CSSJSON.toJSON(css);
+			//Add #_canvas scope
+			this.RemoveScopeJSONCSS(json);
+			return CSSJSON.toCSS(json);
+		} else {
+			return $("head").find("style[_style-name='"+ name +"']").text();
+		}
 	};
 
 	/*
@@ -1220,7 +1295,7 @@ if (!String.includes) {
 	App.prototype.GetProjectStyleAsJSON = function(name) {
 		var css = $("head").find("style[_style-name='"+ name +"']").text();
 		if(css) {
-			return CSSJSON.toJSON(css);
+			return this.RemoveScopeJSONCSS(CSSJSON.toJSON(css));
 		} else return null;
 	};
 	
@@ -1775,9 +1850,10 @@ if (!String.includes) {
 				if(chain.ParentRing)
 					c.addClass("_parent-ring");
 
-				/*Prepare tag css*/
+				/*
 				if(!this.App.HasCssElement(this.CurrentItem().tag, "project-style"))
 					this.App.AppendStyle(this.CurrentItem().tag+" {" + "\n\n}\n\n", "project-style");
+				*/
 				
 		}
 		return this;
@@ -2683,5 +2759,6 @@ function AppUrl(route) {
 function isFunc(func) {
 	return typeof func === "function";
 };
+
 
 
