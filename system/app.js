@@ -6,6 +6,7 @@
 
 /*
  * Da fixare: attacca caption temp solo al primo movimento del mouse, non al click
+ * Importante perchè se provo a fare il doppio click su un elemento mi ritrovo il caption temp sotto al puntatore e non avvia l'operazione
 */
 
 
@@ -228,6 +229,7 @@ if (!String.includes) {
 			if(this.GetUrlVars()["page"])
 				page = this.GetUrlVars()["page"];
 			else page = "index.html";
+
 			this.LoadProject.call(this.GetState("Page"), prj+"/"+page, null);
 		}
 	};
@@ -590,6 +592,7 @@ if (!String.includes) {
 	*/
 	App.prototype.GetClasses = function(t) {
 		var cs = $(t).attr("class");
+		if(!cs) return "";
 		cs = cs.split(" ");
 		var out = "";
 		for(var i in cs) {
@@ -2174,7 +2177,7 @@ if (!String.includes) {
 
 
 	ContextState.prototype._EventFree = function(t) {
-		$(t).width("");
+		$(t).width("").height("");
 	};
 
 	/*

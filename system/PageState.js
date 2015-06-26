@@ -87,7 +87,7 @@
 	*/
 	PageState.prototype.Save = function() {
 		this.App.OpenPageModal(TwigGen.Conf.Paths.Partials + "PageSave.php", null, {
-			pageName: this.Name
+			pageName: decodeURIComponent(this.Name)
 		});
 	};
 
@@ -107,7 +107,7 @@
 			css: css,
 			head: "<head></head>",
 			meta: null,
-			name: n || new Date().toJSON().slice(0,10) + " - " + (new Date().getTime() + 15*60*1000),
+			name: decodeURIComponent(n) || new Date().toJSON().slice(0,10) + " - " + (new Date().getTime() + 15*60*1000),
 			where: "projects/"
 		};
 
@@ -167,7 +167,7 @@
 		u = n.replace("/" + lastseg, "");
 
 		this._CurrentFile = {
-			file: n,
+			file: decodeURIComponent(n),
 			url: u,
 			data:  $($.parseHTML(d))
 		};

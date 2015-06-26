@@ -1,0 +1,9 @@
+.wrapper .col-md-9 {
+	padding: 0px;
+}
+.wrapper .row {
+	height: auto !important;
+}
+.wrapper .head-row div {
+	height: 200px !important;
+}

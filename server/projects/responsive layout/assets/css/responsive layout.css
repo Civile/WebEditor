@@ -1,0 +1,27 @@
+.wrapper {
+	border: 1px solid black;
+	-webkit-box-shadow: 0px 0px 10px #333;
+	box-shadow: 0px 0px 10px #333;
+}
+.wrapper .col-md-9 {
+	padding: 0px;
+}
+.wrapper .row {
+	height: auto !important;
+}
+.wrapper .head-row div {
+	height: 100%;
+}
+.articolo {
+	height: auto !important;
+	overflow: hidden;
+	padding: 10px;
+}
+.wrapper .col-left {
+	padding: 0px !important;
+	overflow: hidden;
+}
+.wrapper .col-left img {
+	width: 100% !important;
+	height: auto !important;
+}

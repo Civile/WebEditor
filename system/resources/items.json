@@ -370,32 +370,6 @@
 			},
 			"protocol": "<label>label</label>"
 		},
-		"option": {
-			"alias": "option",
-			"tag": "option",
-			"icon": "file",
-			"default_style": {
-				"children": {
-				},
-				"attributes": {
-				}
-			},
-			"protocol": "<option value=\"$valore\">opzione</option>",
-			"visible": true
-		},
-		"article": {
-			"alias": "article",
-			"visible": true,
-			"tag": "article",
-			"icon": "file",
-			"default_style": {
-				"children": {
-				},
-				"attributes": {
-				}
-			},
-			"protocol": "<article>article</article>"
-		},
 		"lista": {
 			"alias": "lista",
 			"tag": "ul",
@@ -434,6 +408,62 @@
 				}
 			},
 			"protocol": "<select name=\"$nome\">\n<option>option</option>\n</select>"
+		},
+		"clear": {
+			"alias": "clear",
+			"visible": true,
+			"tag": "div",
+			"icon": "level-down",
+			"default_style": {
+				"children": {
+				},
+				"attributes": {
+					"clear": "both",
+					"height": "1px",
+					"width": "1px",
+					"border": "1px solid #333"
+				}
+			},
+			"protocol": "<div></div>"
+		},
+		"link": {
+			"alias": "link",
+			"visible": true,
+			"tag": "a",
+			"icon": "chain",
+			"default_style": {
+				"children": {
+				},
+				"attributes": {
+				}
+			},
+			"protocol": "<a href=\"$indirizzo\" target=\"$target\">link</a>"
+		},
+		"option": {
+			"alias": "option",
+			"visible": true,
+			"tag": "option",
+			"icon": "toggle-down",
+			"default_style": {
+				"children": {
+				},
+				"attributes": {
+				}
+			},
+			"protocol": "<option value=\"$valore\">opzione</option>"
+		},
+		"article": {
+			"alias": "article",
+			"visible": true,
+			"tag": "article",
+			"icon": "list-alt",
+			"default_style": {
+				"children": {
+				},
+				"attributes": {
+				}
+			},
+			"protocol": "<article>article</article>"
 		}
 	}
 }

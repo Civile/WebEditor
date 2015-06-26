@@ -112,7 +112,6 @@ body .ui-tooltip {
 }
 
 ._caption-chained {
-	overflow:hidden;
 	outline:1px dotted black !important;
 }
 

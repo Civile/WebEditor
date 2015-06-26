@@ -291,7 +291,7 @@ class App {
 	*/
 	private function saveCss($path, $prname, $css) {
 		//Assets - js - css dir
-		$cssfile = $path.$prname."/assets/css/".$prname.".css";
+		$cssfile = $path.$prname."/assets/css/".str_replace(" ", "_", $prname).".css";
 		file_put_contents($cssfile, $css);
 		chmod($cssfile, 0777);
 	}
@@ -308,7 +308,7 @@ class App {
 			$head .= $link;
 
 	 	if(isset($data["css"])) {
-	 		$head .= '<link related rel="stylesheet" href="assets/css/'.$prname.'.css">';
+	 		$head .= '<link related rel="stylesheet" href="assets/css/'.str_replace(" ", "_", $prname).'.css">';
 	 	}
 
 		$head .= '</head>';
